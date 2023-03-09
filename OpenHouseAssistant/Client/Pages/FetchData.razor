@@ -1,4 +1,6 @@
 ﻿@page "/fetchdata"
+@attribute [Authorize]
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @using OpenHouseAssistant.Shared
 @inject HttpClient Http
 
@@ -42,7 +44,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        try
+        {
+            forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+        }
     }
 }
 
