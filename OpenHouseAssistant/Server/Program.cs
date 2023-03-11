@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using OpenHouseAssistant.Library.DataAccess;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = $"https://{builder.Configuration["Auth0:Domain"]}"
         };
     });
+
+builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddTransient<IOpenHouseData, OpenHouseData>();
+
+SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+SqlMapper.AddTypeHandler(new TimeOnlyTypeHandler());
 
 var app = builder.Build();
 

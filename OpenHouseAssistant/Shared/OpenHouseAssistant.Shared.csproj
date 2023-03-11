@@ -10,11 +10,9 @@
     <SupportedPlatform Include="browser" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="DataAccess\" />
     <None Remove="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DataAccess\" />
     <Folder Include="Models\" />
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>608aadb0-491d-4fe5-a633-97e99a46e00e</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
@@ -17,6 +18,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Client\OpenHouseAssistant.Client.csproj" />
     <ProjectReference Include="..\Shared\OpenHouseAssistant.Shared.csproj" />
+    <ProjectReference Include="..\..\OpenHouseAssistant.Library\OpenHouseAssistant.Library.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 
 

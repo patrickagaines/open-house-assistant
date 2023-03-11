@@ -5,32 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using OpenHouseAssistant.Shared.Models;
+using OpenHouseAssistant.Shared.Dtos;
+using OpenHouseAssistant.Library.DataAccess;
+using System.Security.Claims;
 
 namespace OpenHouseAssistant.Server.Controllers;
 
 [Route("open-houses")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class OpenHousesController : ControllerBase
 {
+    private readonly IOpenHouseData _data;
+
+    public OpenHousesController(IOpenHouseData data)
+    {
+        _data = data;
+    }
+
+    private string GetUserId()
+    {
+        string output = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)!.Value;
+        return output;
+    }
+
     // GET: /open-houses
     [HttpGet]
-    public async Task<ActionResult<List<OpenHouseModel>>> Get()
+    public async Task<ActionResult<List<OpenHouseDto>>> Get()
     {
-        throw new NotImplementedException();
+        try
+        {
+            var output = await _data.GetAllAssigned(GetUserId());
+            return Ok(output);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     // GET: /open-houses/{propertyId}
     [HttpGet("{propertyId}")]
-    public async Task<ActionResult<List<OpenHouseModel>>> Get(int propertyId)
+    public async Task<ActionResult<List<OpenHouseDto>>> Get(int propertyId)
     {
         throw new NotImplementedException();
     }
 
     // POST: /open-houses
     [HttpPost]
-    public async Task<ActionResult<OpenHouseModel>> Post([FromBody]
+    public async Task<ActionResult<OpenHouseDto>> Post([FromBody]
     int propertyId, DateOnly date, TimeOnly startTime, TimeOnly endTime)
     {
         throw new NotImplementedException();

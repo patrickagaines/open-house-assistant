@@ -1,12 +1,41 @@
 ﻿@page "/"
 @attribute [Authorize]
 @layout MainLayout
+@inject HttpClient Http
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@using OpenHouseAssistant.Shared.Dtos
 
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@if (openHouses == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var openHouse in openHouses)
+    {
+        <p>@openHouse.StreetAddress</p>
+        <p>@openHouse.Date</p>
+        <p>@openHouse.StartTime</p>
+    }
+}
 
+@code {
+    private OpenHouseDto[]? openHouses;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            openHouses = await Http.GetFromJsonAsync<OpenHouseDto[]>("open-houses");
+        }
+        catch (AccessTokenNotAvailableException ex)
+        {
+            ex.Redirect();
+        }
+    }
+}
