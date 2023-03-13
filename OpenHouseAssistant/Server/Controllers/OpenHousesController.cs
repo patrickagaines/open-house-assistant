@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using OpenHouseAssistant.Shared.Dtos;
 using OpenHouseAssistant.Library.DataAccess;
-using System.Security.Claims;
-using Microsoft.Build.Framework;
 
 namespace OpenHouseAssistant.Server.Controllers;
 
@@ -47,7 +46,7 @@ public class OpenHousesController : ControllerBase
 
     // GET: /open-houses/{openHouseId}
     [HttpGet("{openHouseId}")]
-    public async Task<ActionResult<List<OpenHouseDto>>> GetOne(int openHouseId)
+    public async Task<ActionResult<OpenHouseDto>> GetOne(int openHouseId)
     {
         try
         {

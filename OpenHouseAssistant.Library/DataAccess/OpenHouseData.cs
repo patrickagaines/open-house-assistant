@@ -1,5 +1,4 @@
-﻿using System;
-using OpenHouseAssistant.Shared.Dtos;
+﻿using OpenHouseAssistant.Shared.Dtos;
 
 namespace OpenHouseAssistant.Library.DataAccess;
 
@@ -49,7 +48,7 @@ public class OpenHouseData : IOpenHouseData
             var results = await _sql.LoadData<PropertyDto, dynamic>("dbo.spProperties_Create",
                 new
                 {
-                    userId = userId,
+                    UserId = userId,
                     StreetAddress = openHouse.StreetAddress,
                     UnitNumber = openHouse.UnitNumber,
                     City = openHouse.City,
@@ -93,7 +92,7 @@ public class OpenHouseData : IOpenHouseData
     {
         return _sql.SaveData<dynamic>("dbo.spOpenHouses_Delete",
             new
-            { userId = userId, openHouseId = openHouseId },
+            { UserId = userId, OpenHouseId = openHouseId },
             "Default");
     }
 }
