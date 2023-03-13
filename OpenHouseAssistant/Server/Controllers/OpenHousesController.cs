@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using OpenHouseAssistant.Shared.Dtos;
 using OpenHouseAssistant.Library.DataAccess;
 using System.Security.Claims;
+using Microsoft.Build.Framework;
 
 namespace OpenHouseAssistant.Server.Controllers;
 
@@ -31,7 +32,7 @@ public class OpenHousesController : ControllerBase
 
     // GET: /open-houses
     [HttpGet]
-    public async Task<ActionResult<List<OpenHouseDto>>> Get()
+    public async Task<ActionResult<List<OpenHouseDto>>> GetAll()
     {
         try
         {
@@ -44,33 +45,78 @@ public class OpenHousesController : ControllerBase
         }
     }
 
-    // GET: /open-houses/{propertyId}
-    [HttpGet("{propertyId}")]
-    public async Task<ActionResult<List<OpenHouseDto>>> Get(int propertyId)
+    // GET: /open-houses/{openHouseId}
+    [HttpGet("{openHouseId}")]
+    public async Task<ActionResult<List<OpenHouseDto>>> GetOne(int openHouseId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var output = await _data.GetOneAssigned(GetUserId(), openHouseId);
+            return Ok(output);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    // GET: /open-houses
+    [HttpGet("property/{propertyId}")]
+    public async Task<ActionResult<List<OpenHouseDto>>> GetAllByProperty(int propertyId)
+    {
+        try
+        {
+            var output = await _data.GetAllAssignedByProperty(GetUserId(), propertyId);
+            return Ok(output);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     // POST: /open-houses
     [HttpPost]
-    public async Task<ActionResult<OpenHouseDto>> Post([FromBody]
-    int propertyId, DateOnly date, TimeOnly startTime, TimeOnly endTime)
+    public async Task<ActionResult<OpenHouseDto>> Post([FromBody] OpenHouseDto openHouse)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var output = await _data.Create(GetUserId(), openHouse);
+            return Ok(output);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     // PUT: /open-houses/{openHouseId}
     [HttpPut("{openHouseId}")]
-    public async Task<ActionResult> Put(int openHouseId, [FromBody]
-    int propertyId, DateOnly date, TimeOnly startTime, TimeOnly endTime)
+    public async Task<ActionResult> Put(int openHouseId,[FromBody] OpenHouseDto openHouse)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _data.Update(GetUserId(), openHouseId, openHouse);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     // DELETE: /open-houses/{openHouseId}
     [HttpDelete("{openHouseId}")]
     public async Task<IActionResult> Delete(int openHouseId)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _data.Delete(GetUserId(), openHouseId);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

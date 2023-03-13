@@ -1,5 +1,6 @@
-﻿using System;
-namespace OpenHouseAssistant.Shared.Dtos;
+﻿namespace OpenHouseAssistant.Shared.Dtos;
+
+#nullable disable
 
 public class OpenHouseDto
 {
@@ -7,10 +8,11 @@ public class OpenHouseDto
     public DateOnly Date { get; set; }
     public TimeOnly StartTime { get; set; }
     public TimeOnly EndTime { get; set; }
-    public string? StreetAddress { get; set; }
-    public string? UnitNumber { get; set; }
-    public string? City { get; set; }
-    public string? State { get; set; }
-    public string? ZipCode { get; set; }
+    public int PropertyId { get; set; }
+    public string StreetAddress { get; set; }
+    public string UnitNumber { get; set; }
+    public string City { get; set; }
+    public string State { get; set; }
+    public string ZipCode { get; set; }
 }
 
