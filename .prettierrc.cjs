@@ -1,8 +1,10 @@
 module.exports = {
-  trailingComma: "all",
+  trailingComma: "es5",
   tabWidth: 2,
   semi: true,
-  singleQuote: false,
-  printWidth: 100,
+  printWidth: 80,
   bracketSpacing: true,
+  importOrder: ["^components/(.*)$", "^[./]"],
+  importOrderSeparation: false,
+  importOrderSortSpecifiers: true,
 };

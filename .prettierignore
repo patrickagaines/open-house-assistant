@@ -1,6 +1,3 @@
 dist/
 node_modules/
 public/
-.prettierrc.cjs
-.eslintrc.cjs
-vite-env.d.ts
