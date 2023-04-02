@@ -1,5 +1,4 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "@chakra-ui/react";
 
 export const LogoutButton = () => {
   const { logout } = useAuth0();
@@ -12,5 +11,5 @@ export const LogoutButton = () => {
     });
   };
 
-  return <Button onClick={handleLogout}>Log Out</Button>;
+  return <button onClick={handleLogout}>Log Out</button>;
 };
