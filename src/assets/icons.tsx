@@ -24,7 +24,7 @@ export const SunIcon = () => {
 export const MoonIcon = () => {
   return (
     <svg
-      className="stroke-dk-heading"
+      className="stroke-dk-text"
       width="24"
       height="24"
       viewBox="0 0 24 24"
