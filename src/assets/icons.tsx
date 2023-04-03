@@ -43,3 +43,23 @@ export const MoonIcon = () => {
     </svg>
   );
 };
+
+export const PageLoaderIcon = () => {
+  return (
+    <svg
+      className="stroke-lt-heading dark:stroke-dk-heading animate-spin-slow"
+      width="48"
+      height="48"
+      viewBox="0 0 26 26"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 1V5.8M13 20.2V25M4.516 4.516L7.912 7.912M18.088 18.088L21.484 21.484M1 13H5.8M20.2 13H25M4.516 21.484L7.912 18.088M18.088 7.912L21.484 4.516"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};

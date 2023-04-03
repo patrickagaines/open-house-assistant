@@ -1,3 +1,9 @@
+import { PageLoaderIcon } from "../assets/icons";
+
 export const PageLoader = () => {
-  return <h1>This is the Page Loader.</h1>;
+  return (
+    <div className="h-screen flex items-center justify-center">
+      <PageLoaderIcon />
+    </div>
+  );
 };
