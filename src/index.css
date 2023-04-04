@@ -41,10 +41,10 @@
 
   body {
     font-family: "OpenSans";
-    line-height: 1.5rem;
     @apply bg-lt-ground
-    dark:bg-dk-ground
+    text-base
     text-lt-text
+    dark:bg-dk-ground
     dark:text-dk-text;
   }
 

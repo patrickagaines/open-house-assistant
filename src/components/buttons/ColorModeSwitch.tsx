@@ -1,29 +1,35 @@
-import { useState } from "react";
 import { MoonIcon, SunIcon } from "../../assets/icons";
 
-export const ColorModeSwitch = () => {
-  const [mode, setMode] = useState(localStorage.getItem("theme"));
+interface ColorModeSwitchProps {
+  colorMode: string | null;
+  setColorMode: React.Dispatch<React.SetStateAction<string | null>>;
+}
 
+export const ColorModeSwitch = ({ colorMode, setColorMode }: ColorModeSwitchProps) => {
   const handleModeSwitch = () => {
-    if (localStorage.theme === "light") {
+    if (colorMode === "light") {
       document.documentElement.classList.add("dark");
-      setMode("dark");
+      setColorMode("dark");
       localStorage.setItem("theme", "dark");
-    } else {
+    } else if (colorMode === "dark") {
       document.documentElement.classList.remove("dark");
-      setMode("light");
+      setColorMode("light");
       localStorage.setItem("theme", "light");
+    } else if (colorMode === null) {
+      document.documentElement.classList.add("dark");
+      setColorMode("dark");
+      localStorage.setItem("theme", "dark");
     }
   };
 
   return (
     <>
-      {mode === "light" && (
+      {colorMode === "light" && (
         <button onClick={handleModeSwitch}>
           <SunIcon />
         </button>
       )}
-      {mode === "dark" && (
+      {colorMode === "dark" && (
         <button onClick={handleModeSwitch}>
           <MoonIcon />
         </button>

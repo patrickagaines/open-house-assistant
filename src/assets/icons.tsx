@@ -2,8 +2,8 @@ export const SunIcon = () => {
   return (
     <svg
       className="stroke-lt-primary"
-      width="24"
-      height="24"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -25,8 +25,8 @@ export const MoonIcon = () => {
   return (
     <svg
       className="stroke-dk-text"
-      width="24"
-      height="24"
+      width="32"
+      height="32"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -44,10 +44,33 @@ export const MoonIcon = () => {
   );
 };
 
+export const NavMenuIcon = () => {
+  return (
+    <svg
+      className="stroke-lt-text dark:stroke-dk-text"
+      width="40"
+      height="40"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="Menu / Hamburger_MD">
+        <path
+          id="Vector"
+          d="M5 17H19M5 12H19M5 7H19"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
 export const PageLoaderIcon = () => {
   return (
     <svg
-      className="stroke-lt-heading dark:stroke-dk-heading animate-spin-slow"
+      className="animate-spin-slow stroke-lt-heading dark:stroke-dk-heading"
       width="48"
       height="48"
       viewBox="0 0 26 26"
@@ -60,6 +83,63 @@ export const PageLoaderIcon = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  );
+};
+
+export const DashboardIcon = () => {
+  return (
+    <svg
+      className="fill-lt-text dark:fill-dk-text"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M19 5V7H15V5H19ZM9 5V11H5V5H9ZM19 13V19H15V13H19ZM9 17V19H5V17H9ZM21 3H13V9H21V3ZM11 3H3V13H11V3ZM21 11H13V21H21V11ZM11 15H3V21H11V15Z" />
+    </svg>
+  );
+};
+
+export const PropertiesIcon = () => {
+  return (
+    <svg
+      className="fill-lt-text dark:fill-dk-text"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M1 11V21H7V16H9V21H15V11L8 6L1 11ZM13 19H11V14H5V19H3V12.03L8 8.46L13 12.03V19Z" />
+      <path d="M19 7H17V9H19V7Z" />
+      <path d="M19 11H17V13H19V11Z" />
+      <path d="M19 15H17V17H19V15Z" />
+      <path d="M10 3V4.97L12 6.4V5H21V19H17V21H23V3H10Z" />
+    </svg>
+  );
+};
+
+export const GuestsIcon = () => {
+  return (
+    <svg
+      className="stroke-lt-text dark:stroke-dk-text"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="User / Users">
+        <path
+          id="Vector"
+          d="M21 19.9999C21 18.2583 19.3304 16.7767 17 16.2275M15 20C15 17.7909 12.3137 16 9 16C5.68629 16 3 17.7909 3 20M15 13C17.2091 13 19 11.2091 19 9C19 6.79086 17.2091 5 15 5M9 13C6.79086 13 5 11.2091 5 9C5 6.79086 6.79086 5 9 5C11.2091 5 13 6.79086 13 9C13 11.2091 11.2091 13 9 13Z"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
     </svg>
   );
 };

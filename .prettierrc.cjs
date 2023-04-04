@@ -8,4 +8,5 @@ module.exports = {
   importOrderSeparation: false,
   importOrderSortSpecifiers: true,
   noInlineComments: false,
+  plugins: [require("prettier-plugin-tailwindcss")],
 };

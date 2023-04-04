@@ -1,11 +1,11 @@
-import { NavButtons } from "../navigation/NavButtons";
+interface HeaderProps {
+  children: React.ReactNode;
+}
 
-export const Header = () => {
+export const Header = ({ children }: HeaderProps) => {
   return (
-    <header>
-      <nav>
-        <NavButtons />
-      </nav>
+    <header className="fixed left-0 top-0 h-16 w-full border-b border-b-lt-border backdrop-blur-sm dark:border-b-dk-border lg:h-20">
+      {children}
     </header>
   );
 };

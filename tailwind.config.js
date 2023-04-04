@@ -7,6 +7,9 @@ export default {
       animation: {
         "spin-slow": "spin 1.5s linear infinite",
       },
+      backdropBlur: {
+        sm: "8px",
+      },
       colors: {
         "lt-primary": "#FFC107",
         "lt-ground": "#F8F9FA",

@@ -1,5 +1,3 @@
-import { ColorModeSwitch } from "../components/buttons/ColorModeSwitch";
-
 export const Home = () => {
   return (
     <div>
@@ -10,7 +8,6 @@ export const Home = () => {
         sint porro sapiente quam quo consequatur nisi ipsa! At nostrum veritatis ducimus iusto culpa
         rem voluptates nihil similique hic, ex sequi delectus obcaecati aut, libero optio.
       </p>
-      <ColorModeSwitch />
     </div>
   );
 };
