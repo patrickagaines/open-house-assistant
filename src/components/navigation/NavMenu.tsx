@@ -1,8 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { DashboardIcon, GuestsIcon, PropertiesIcon } from "../../assets/icons";
-import { LoginButton } from "../authentication/LoginButton";
-import { LogoutButton } from "../authentication/LogoutButton";
-import { SignupButton } from "../authentication/SignupButton";
+import { LoginButton } from "../buttons/LoginButton";
+import { LogoutButton } from "../buttons/LogoutButton";
+import { SignupButton } from "../buttons/SignupButton";
 import { NavMenuLink } from "./NavMenuLink";
 
 interface NavMenuProps {
@@ -27,10 +27,10 @@ export const NavMenu = ({ navMenu, setNavMenu }: NavMenuProps) => {
         <NavMenuLink handleClick={handleCloseNavMenu} Icon={DashboardIcon} route="/dashboard">
           Dashboard
         </NavMenuLink>
-        <NavMenuLink handleClick={handleCloseNavMenu} Icon={PropertiesIcon} route="/dashboard">
+        <NavMenuLink handleClick={handleCloseNavMenu} Icon={PropertiesIcon} route="/properties">
           Properties
         </NavMenuLink>
-        <NavMenuLink handleClick={handleCloseNavMenu} Icon={GuestsIcon} route="/dashboard">
+        <NavMenuLink handleClick={handleCloseNavMenu} Icon={GuestsIcon} route="/guests">
           Guests
         </NavMenuLink>
         <hr className="border-lt-border dark:border-dk-border" />
