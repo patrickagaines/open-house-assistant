@@ -143,3 +143,26 @@ export const GuestsIcon = () => {
     </svg>
   );
 };
+
+export const ChevronLeftIcon = () => {
+  return (
+    <svg
+      className="stroke-lt-text dark:stroke-dk-text"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="Arrow / Chevron_Left_MD">
+        <path
+          id="Vector"
+          d="M14 16L10 12L14 8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+};

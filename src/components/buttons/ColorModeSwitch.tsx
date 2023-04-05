@@ -25,12 +25,12 @@ export const ColorModeSwitch = ({ colorMode, setColorMode }: ColorModeSwitchProp
   return (
     <>
       {colorMode === "light" && (
-        <button onClick={handleModeSwitch}>
+        <button type="button" aria-label="Color Mode Switch" onClick={handleModeSwitch}>
           <SunIcon />
         </button>
       )}
       {colorMode === "dark" && (
-        <button onClick={handleModeSwitch}>
+        <button type="button" aria-label="Color Mode Switch" onClick={handleModeSwitch}>
           <MoonIcon />
         </button>
       )}

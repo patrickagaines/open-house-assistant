@@ -13,7 +13,7 @@ export const NavLogo = ({ setNavMenu }: NavLogoProps) => {
   };
 
   return (
-    <Link to="/" onClick={handleCloseNavMenu}>
+    <Link to="/" aria-label="Go to Home Page" onClick={handleCloseNavMenu}>
       <Logo />
     </Link>
   );
