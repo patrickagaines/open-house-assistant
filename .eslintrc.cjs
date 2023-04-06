@@ -12,6 +12,9 @@ module.exports = {
       version: "detect",
     },
     "import/resolver": {
+      typescript: {
+        alwaysTryTypes: true,
+      },
       node: {
         paths: ["src"],
         extensions: [".js", ".jsx", ".ts", ".tsx"],

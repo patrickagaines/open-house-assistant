@@ -1,17 +1,17 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { ColorModeSwitch } from "../buttons/ColorModeSwitch";
 import { LoginButton } from "../buttons/LoginButton";
 import { LogoutButton } from "../buttons/LogoutButton";
 import { SignupButton } from "../buttons/SignupButton";
+import { ThemeModeSwitch } from "../buttons/ThemeModeSwitch";
 import { NavBarLink } from "./NavBarLink";
 import { NavLogo } from "./NavLogo";
 
 interface NavBarProps {
-  colorMode: string | null;
-  setColorMode: React.Dispatch<React.SetStateAction<string | null>>;
+  theme: "dark" | "light";
+  setTheme: React.Dispatch<React.SetStateAction<"dark" | "light">>;
 }
 
-export const NavBar = ({ colorMode, setColorMode }: NavBarProps) => {
+export const NavBar = ({ theme, setTheme }: NavBarProps) => {
   const { isAuthenticated } = useAuth0();
 
   return (
@@ -28,7 +28,7 @@ export const NavBar = ({ colorMode, setColorMode }: NavBarProps) => {
           </>
         )}
         {isAuthenticated && <LogoutButton />}
-        <ColorModeSwitch colorMode={colorMode} setColorMode={setColorMode} />
+        <ThemeModeSwitch theme={theme} setTheme={setTheme} />
       </div>
     </nav>
   );

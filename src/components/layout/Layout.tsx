@@ -7,8 +7,16 @@ import { NavMenuShade } from "../navigation/NavMenuShade";
 import { Header } from "./Header";
 
 export const Layout = () => {
+  const initialTheme = () => {
+    if (localStorage.getItem("theme") === "dark") {
+      return "dark";
+    } else {
+      return "light";
+    }
+  };
+
   const [navMenu, setNavMenu] = useState<"closed" | "open">("closed");
-  const [colorMode, setColorMode] = useState(localStorage.getItem("theme"));
+  const [theme, setTheme] = useState<"dark" | "light">(initialTheme());
 
   return (
     <>
@@ -16,10 +24,10 @@ export const Layout = () => {
         <MobileNavBar
           navMenu={navMenu}
           setNavMenu={setNavMenu}
-          colorMode={colorMode}
-          setColorMode={setColorMode}
+          theme={theme}
+          setTheme={setTheme}
         />
-        <NavBar colorMode={colorMode} setColorMode={setColorMode} />
+        <NavBar theme={theme} setTheme={setTheme} />
       </Header>
       <NavMenu navMenu={navMenu} setNavMenu={setNavMenu} />
       {navMenu === "open" && <NavMenuShade />}
