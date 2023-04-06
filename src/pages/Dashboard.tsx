@@ -1,10 +1,9 @@
-import { useCreateProperty } from "../hooks/properties/useCreateProperty";
-import { usePropertyById } from "../hooks/properties/usePropertyById";
-import { Property } from "../ts/interfaces";
+import { useDeleteOpenHouse } from "../hooks/openhouses/useDeleteOpenHouse";
+import { useOpenHouses } from "../hooks/openhouses/useOpenHouses";
 
 export const Dashboard = () => {
-  const { isLoading, error, data } = usePropertyById(7);
-  const mutation = useCreateProperty();
+  const { isLoading, error, data } = useOpenHouses();
+  const mutation = useDeleteOpenHouse();
 
   if (isLoading) console.log("Loading...");
 
@@ -12,16 +11,8 @@ export const Dashboard = () => {
 
   if (data) console.log(data);
 
-  const newProperty: Property = {
-    streetAddress: "400 E Ohio Street",
-    unitNumber: "1702",
-    city: "Chicago",
-    state: "IL",
-    zipCode: "60611",
-  };
-
   const handleClick = () => {
-    mutation.mutate(newProperty);
+    mutation.mutate(6);
   };
 
   return (

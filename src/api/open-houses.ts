@@ -75,26 +75,30 @@ export const PostWithNewProperty = async (auth: Auth0ContextInterface<User>, ope
 };
 
 // prettier-ignore
-export const Put = async (auth: Auth0ContextInterface<User>, basicOpenHouse: BasicOpenHouse) => {
+export const Put = async (auth: Auth0ContextInterface<User>, basicOpenHouse: BasicOpenHouse): Promise<number> => {
   const accessToken = await auth.getAccessTokenSilently();
 
-  await fetch(`${baseUrl}/${endPoint}/${basicOpenHouse.id}`, {
+  const response = await fetch(`${baseUrl}/${endPoint}/${basicOpenHouse.id}`, {
     method: "PUT",
     headers: {
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(basicOpenHouse),
-  });
+  }).then((res) => res.status);
+
+  return response;
 };
 
-export const Delete = async (auth: Auth0ContextInterface<User>, openHouseId: number) => {
+export const Delete = async (auth: Auth0ContextInterface<User>, openHouseId: number): Promise<number> => {
   const accessToken = await auth.getAccessTokenSilently();
 
-  await fetch(`${baseUrl}/${endPoint}/${openHouseId}`, {
+  const response = await fetch(`${baseUrl}/${endPoint}/${openHouseId}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
-};
+  }).then((res) => res.status);
+
+  return response;
+}
