@@ -19,6 +19,28 @@ export interface OpenHouse {
   zipCode: string;
 }
 
+export interface Guest {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  emailAddress: string;
+}
+
+export interface GuestToCheckIn {
+  openHouseId: number;
+  propertyId: number;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  emailAddress: string;
+}
+
+export interface GuestToRemove {
+  guestId: number;
+  openHouseId: number;
+}
+
 export interface Property {
   id?: number;
   streetAddress: string;
