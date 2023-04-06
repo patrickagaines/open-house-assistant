@@ -18,3 +18,12 @@ export interface OpenHouse {
   state: string;
   zipCode: string;
 }
+
+export interface Property {
+  id?: number;
+  streetAddress: string;
+  unitNumber?: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
