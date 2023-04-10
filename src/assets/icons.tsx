@@ -1,17 +1,55 @@
-export const SunIcon = () => {
+export const ChevronLeftIcon = () => {
   return (
     <svg
-      className="stroke-lt-primary"
+      className="stroke-lt-text dark:stroke-dk-text"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="Arrow / Chevron_Left_MD">
+        <path
+          id="Vector"
+          d="M14 16L10 12L14 8"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+};
+
+export const DashboardIcon = () => {
+  return (
+    <svg
+      className="fill-lt-text dark:fill-dk-text"
       width="32"
       height="32"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="Environment / Sun">
+      <path d="M19 5V7H15V5H19ZM9 5V11H5V5H9ZM19 13V19H15V13H19ZM9 17V19H5V17H9ZM21 3H13V9H21V3ZM11 3H3V13H11V3ZM21 11H13V21H21V11ZM11 15H3V21H11V15Z" />
+    </svg>
+  );
+};
+
+export const GuestsIcon = () => {
+  return (
+    <svg
+      className="stroke-lt-text dark:stroke-dk-text"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="User / Users">
         <path
           id="Vector"
-          d="M12 4V2M12 20V22M6.41421 6.41421L5 5M17.728 17.728L19.1422 19.1422M4 12H2M20 12H22M17.7285 6.41421L19.1427 5M6.4147 17.728L5.00049 19.1422M12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17Z"
+          d="M21 19.9999C21 18.2583 19.3304 16.7767 17 16.2275M15 20C15 17.7909 12.3137 16 9 16C5.68629 16 3 17.7909 3 20M15 13C17.2091 13 19 11.2091 19 9C19 6.79086 17.2091 5 15 5M9 13C6.79086 13 5 11.2091 5 9C5 6.79086 6.79086 5 9 5C11.2091 5 13 6.79086 13 9C13 11.2091 11.2091 13 9 13Z"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -87,21 +125,6 @@ export const PageLoaderIcon = () => {
   );
 };
 
-export const DashboardIcon = () => {
-  return (
-    <svg
-      className="fill-lt-text dark:fill-dk-text"
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M19 5V7H15V5H19ZM9 5V11H5V5H9ZM19 13V19H15V13H19ZM9 17V19H5V17H9ZM21 3H13V9H21V3ZM11 3H3V13H11V3ZM21 11H13V21H21V11ZM11 15H3V21H11V15Z" />
-    </svg>
-  );
-};
-
 export const PropertiesIcon = () => {
   return (
     <svg
@@ -121,20 +144,20 @@ export const PropertiesIcon = () => {
   );
 };
 
-export const GuestsIcon = () => {
+export const SunIcon = () => {
   return (
     <svg
-      className="stroke-lt-text dark:stroke-dk-text"
+      className="stroke-lt-primary"
       width="32"
       height="32"
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="User / Users">
+      <g id="Environment / Sun">
         <path
           id="Vector"
-          d="M21 19.9999C21 18.2583 19.3304 16.7767 17 16.2275M15 20C15 17.7909 12.3137 16 9 16C5.68629 16 3 17.7909 3 20M15 13C17.2091 13 19 11.2091 19 9C19 6.79086 17.2091 5 15 5M9 13C6.79086 13 5 11.2091 5 9C5 6.79086 6.79086 5 9 5C11.2091 5 13 6.79086 13 9C13 11.2091 11.2091 13 9 13Z"
+          d="M12 4V2M12 20V22M6.41421 6.41421L5 5M17.728 17.728L19.1422 19.1422M4 12H2M20 12H22M17.7285 6.41421L19.1427 5M6.4147 17.728L5.00049 19.1422M12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12C17 14.7614 14.7614 17 12 17Z"
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -144,25 +167,63 @@ export const GuestsIcon = () => {
   );
 };
 
-export const ChevronLeftIcon = () => {
+export const TableLoaderIcon = () => {
   return (
     <svg
-      className="stroke-lt-text dark:stroke-dk-text"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
+      className="mx-auto fill-lt-heading dark:fill-dk-heading"
+      width="96px"
+      height="64px"
+      viewBox="0 0 100 100"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g id="Arrow / Chevron_Left_MD">
-        <path
-          id="Vector"
-          d="M14 16L10 12L14 8"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g>
+      <rect x="15" y="30" width="8" height="40">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keyTimes="0;0.5;1"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-0.6"
+        ></animate>
+      </rect>
+      <rect x="35" y="30" width="8" height="40">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keyTimes="0;0.5;1"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-0.4"
+        ></animate>
+      </rect>
+      <rect x="55" y="30" width="8" height="40">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keyTimes="0;0.5;1"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-0.2"
+        ></animate>
+      </rect>
+      <rect x="75" y="30" width="8" height="40">
+        <animate
+          attributeName="opacity"
+          dur="1s"
+          repeatCount="indefinite"
+          calcMode="spline"
+          keyTimes="0;0.5;1"
+          keySplines="0.5 0 0.5 1;0.5 0 0.5 1"
+          values="1;0.2;1"
+          begin="-1"
+        ></animate>
+      </rect>
     </svg>
   );
 };

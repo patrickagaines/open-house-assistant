@@ -21,12 +21,7 @@ export const Layout = () => {
   return (
     <>
       <Header>
-        <MobileNavBar
-          navMenu={navMenu}
-          setNavMenu={setNavMenu}
-          theme={theme}
-          setTheme={setTheme}
-        />
+        <MobileNavBar navMenu={navMenu} setNavMenu={setNavMenu} theme={theme} setTheme={setTheme} />
         <NavBar theme={theme} setTheme={setTheme} />
       </Header>
       <NavMenu navMenu={navMenu} setNavMenu={setNavMenu} />
