@@ -2,7 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { useOpenHouses } from "../../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../../ts/interfaces";
-import { SearchTable } from "./SearchTable";
+import { DataTable } from "./DataTable";
 
 export const OpenHousesTable = () => {
   const { isLoading, error, data } = useOpenHouses();
@@ -53,7 +53,5 @@ export const OpenHousesTable = () => {
     []
   );
 
-  return (
-    <SearchTable<OpenHouse> isLoading={isLoading} error={error} data={data} columns={columns} />
-  );
+  return <DataTable<OpenHouse> isLoading={isLoading} error={error} data={data} columns={columns} />;
 };
