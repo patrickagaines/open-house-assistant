@@ -2,6 +2,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { useOpenHouses } from "../../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../../ts/interfaces";
+import { formatDate } from "../../utils/format-date";
+import { formatTime } from "../../utils/format-time";
 import { DataTable } from "./DataTable";
 
 export const OpenHousesTable = () => {
@@ -12,17 +14,17 @@ export const OpenHousesTable = () => {
       {
         accessorKey: "date",
         header: "Date",
-        cell: (info) => info.getValue(),
+        cell: (info) => formatDate(info.getValue<string>()),
       },
       {
         accessorKey: "startTime",
         header: "Start Time",
-        cell: (info) => info.getValue(),
+        cell: (info) => formatTime(info.getValue<string>()),
       },
       {
         accessorKey: "endTime",
         header: "End Time",
-        cell: (info) => info.getValue(),
+        cell: (info) => formatTime(info.getValue<string>()),
       },
       {
         accessorKey: "streetAddress",
