@@ -1,11 +1,12 @@
-import { ColumnDef, Table, flexRender } from "@tanstack/react-table";
+import { Table, flexRender } from "@tanstack/react-table";
 import { TableLoaderIcon } from "../../assets/icons";
+import { AugmentedColumnDef } from "../../ts/types";
 
 interface DataTableBodyProps<T> {
   isLoading: boolean;
   error: unknown;
   table: Table<T>;
-  columns: ColumnDef<T>[];
+  columns: AugmentedColumnDef<T>[];
 }
 
 export const DataTableBody = <T,>({ isLoading, error, table, columns }: DataTableBodyProps<T>) => {
@@ -36,9 +37,13 @@ export const DataTableBody = <T,>({ isLoading, error, table, columns }: DataTabl
   return (
     <tbody className="bg-lt-surface dark:bg-dk-surface">
       {table.getRowModel().rows.map((row) => (
-        <tr key={row.id} className="h-8">
+        <tr key={row.id}>
           {row.getVisibleCells().map((cell) => (
-            <td key={cell.id} className="border border-lt-border p-2 dark:border-dk-border">
+            <td
+              key={cell.id}
+              width={(cell.column.columnDef as AugmentedColumnDef<T>).meta.size}
+              className="border border-lt-border p-2 dark:border-dk-border"
+            >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
             </td>
           ))}
