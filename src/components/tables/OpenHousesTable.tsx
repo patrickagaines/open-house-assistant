@@ -1,9 +1,11 @@
 import { useMemo } from "react";
+import { PlusIcon } from "../../assets/icons";
 import { useOpenHouses } from "../../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
 import { formatDate } from "../../utils/format-date";
 import { formatTime } from "../../utils/format-time";
+import { TableActionButton } from "../buttons/TableActionButton";
 import { DataTable } from "./DataTable";
 
 export const OpenHousesTable = () => {
@@ -79,5 +81,22 @@ export const OpenHousesTable = () => {
     []
   );
 
-  return <DataTable<OpenHouse> isLoading={isLoading} error={error} data={data} columns={columns} />;
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DataTable<OpenHouse>
+      title="Open Houses"
+      isLoading={isLoading}
+      error={error}
+      data={data}
+      columns={columns}
+      actionButton={
+        <TableActionButton onClick={handleClick} icon={<PlusIcon />}>
+          Create
+        </TableActionButton>
+      }
+    />
+  );
 };

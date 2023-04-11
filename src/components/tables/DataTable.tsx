@@ -12,13 +12,22 @@ import { DataTableBody } from "./DataTableBody";
 import { DataTableControls } from "./DataTableControls";
 
 interface DataTableProps<T> {
+  title: string;
   isLoading: boolean;
   error: unknown;
   data: T[] | undefined;
   columns: AugmentedColumnDef<T>[];
+  actionButton: React.ReactElement;
 }
 
-export const DataTable = <T,>({ isLoading, error, data, columns }: DataTableProps<T>) => {
+export const DataTable = <T,>({
+  title,
+  isLoading,
+  error,
+  data,
+  columns,
+  actionButton,
+}: DataTableProps<T>) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
 
   if (data === undefined) {
@@ -39,12 +48,14 @@ export const DataTable = <T,>({ isLoading, error, data, columns }: DataTableProp
   });
 
   return (
-    <section>
-      <div>
+    <section className="text-sm">
+      <h1 className="text-center text-2xl md:text-3xl">{title}</h1>
+      <div className="mt-4 flex items-baseline justify-between">
         <DebouncedInput value={globalFilter ?? ""} onChange={(value) => setGlobalFilter(value)} />
+        {actionButton}
       </div>
-      <div className="overflow-x-scroll">
-        <table className="mt-2 w-full whitespace-nowrap">
+      <div className="overflow-x-scroll whitespace-nowrap">
+        <table className="mt-2 w-full">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
