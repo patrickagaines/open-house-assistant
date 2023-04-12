@@ -36,6 +36,62 @@ export const DashboardIcon = () => {
   );
 };
 
+export const DetailIcon = () => {
+  return (
+    <svg
+      className="fill-lt-text hover:fill-dk-primary dark:fill-dk-text dark:hover:fill-lt-primary"
+      width="24"
+      height="24"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="16" cy="16" r="16" />
+      <path
+        className="stroke-lt-surface dark:stroke-dk-surface"
+        d="M15 22C15 22.5523 15.4477 23 16 23C16.5523 23 17 22.5523 17 22C17 21.4477 16.5523 21 16 21C15.4477 21 15 21.4477 15 22Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        className="stroke-lt-surface dark:stroke-dk-surface"
+        d="M15 16C15 16.5523 15.4477 17 16 17C16.5523 17 17 16.5523 17 16C17 15.4477 16.5523 15 16 15C15.4477 15 15 15.4477 15 16Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        className="stroke-lt-surface dark:stroke-dk-surface"
+        d="M15 10C15 10.5523 15.4477 11 16 11C16.5523 11 17 10.5523 17 10C17 9.44772 16.5523 9 16 9C15.4477 9 15 9.44772 15 10Z"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+export const EditIcon = () => {
+  return (
+    <svg
+      className="fill-lt-text hover:fill-dk-primary dark:fill-dk-text dark:hover:fill-lt-primary"
+      width="24"
+      height="24"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="16" cy="16" r="16" />
+      <path
+        className="stroke-lt-surface dark:stroke-dk-surface"
+        d="M16 11.5861L8 19.5861V23.5861L12 23.586L20 15.586M16 11.5861L18.8686 8.7174L18.8704 8.7157C19.2652 8.32082 19.463 8.12303 19.691 8.04894C19.8919 7.98369 20.1082 7.98369 20.3091 8.04894C20.5369 8.12297 20.7345 8.32054 21.1288 8.71486L22.8686 10.4547C23.2646 10.8507 23.4627 11.0488 23.5369 11.2771C23.6022 11.4779 23.6021 11.6943 23.5369 11.8951C23.4628 12.1233 23.265 12.3211 22.8695 12.7166L22.8686 12.7174L20 15.586M16 11.5861L20 15.586"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
 export const GuestsIcon = () => {
   return (
     <svg

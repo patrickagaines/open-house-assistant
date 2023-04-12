@@ -56,7 +56,7 @@ export const DataTable = <T,>({
       </div>
       <div className="overflow-x-scroll whitespace-nowrap">
         <table className="mt-2 w-full">
-          <thead>
+          <thead className="text-lt-heading dark:text-dk-heading">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (

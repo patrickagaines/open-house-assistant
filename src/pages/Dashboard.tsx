@@ -1,5 +1,29 @@
+import { useState } from "react";
+import { FormShade } from "../components/forms/FormShade";
+import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { OpenHousesTable } from "../components/tables/OpenHousesTable";
+import { OpenHouse } from "../ts/interfaces";
 
 export const Dashboard = () => {
-  return <OpenHousesTable />;
+  const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
+  const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
+
+  const handleOpenHouseEditForm = () => {
+    if (openHouseEditForm === "closed") {
+      setOpenHouseEditForm("open");
+    } else {
+      setOpenHouseEditForm("closed");
+    }
+  };
+
+  return (
+    <>
+      <OpenHousesTable handleOpenEditForm={handleOpenHouseEditForm} setObjectToEdit={setOpenHouseToEdit}  />
+      {openHouseEditForm === "open" && (
+        <FormShade>
+          <OpenHouseEditForm handleCloseEditForm={handleOpenHouseEditForm} />
+        </FormShade>
+      )}
+    </>
+  );
 };

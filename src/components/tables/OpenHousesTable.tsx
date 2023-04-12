@@ -6,10 +6,19 @@ import { AugmentedColumnDef } from "../../ts/types";
 import { formatDate } from "../../utils/format-date";
 import { formatTime } from "../../utils/format-time";
 import { TableActionButton } from "../buttons/TableActionButton";
+import { TableDetailButton } from "../buttons/TableDetailButton";
+import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
-export const OpenHousesTable = () => {
+interface OpenHousesTableProps {
+  handleOpenEditForm: () => void;
+  setObjectToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
+}
+
+export const OpenHousesTable = ({ handleOpenEditForm, setObjectToEdit }: OpenHousesTableProps) => {
   const { isLoading, error, data } = useOpenHouses();
+
+  console.log(data);
 
   const columns = useMemo<AugmentedColumnDef<OpenHouse>[]>(
     () => [
@@ -62,17 +71,25 @@ export const OpenHousesTable = () => {
         },
       },
       {
-        accessorKey: "state",
-        header: "State",
-        cell: (info) => info.getValue(),
+        id: "edit",
+        accessorKey: "id",
+        header: "Edit",
+        cell: (info) => (
+          <TableEditButton<OpenHouse>
+            handleOpenEditForm={handleOpenEditForm}
+            setObjectToEdit={setObjectToEdit}
+            objectToEdit={info.row.original}
+          />
+        ),
         meta: {
           size: "auto",
         },
       },
       {
-        accessorKey: "zipCode",
-        header: "Zip Code",
-        cell: (info) => info.getValue(),
+        id: "view",
+        accessorKey: "id",
+        header: "View",
+        cell: () => <TableDetailButton />,
         meta: {
           size: "auto",
         },
