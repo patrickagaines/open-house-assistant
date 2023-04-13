@@ -17,7 +17,7 @@ export const TableEditButton = <T,>({
   };
 
   return (
-    <button className="mx-auto block" onClick={handleClick}>
+    <button type="button" className="mx-auto block" onClick={handleClick}>
       <EditIcon />
     </button>
   );

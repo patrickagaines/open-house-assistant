@@ -12,5 +12,5 @@ export const LoginButton = () => {
     });
   };
 
-  return <Button onClick={handleLogin}>Log In</Button>;
+  return <Button type="button" onClick={handleLogin}>Log In</Button>;
 };

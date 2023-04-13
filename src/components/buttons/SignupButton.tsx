@@ -15,5 +15,5 @@ export const SignupButton = () => {
     });
   };
 
-  return <Button onClick={handleSignUp}>Sign Up</Button>;
+  return <Button type="button" onClick={handleSignUp}>Sign Up</Button>;
 };

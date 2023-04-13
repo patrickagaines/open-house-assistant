@@ -7,6 +7,7 @@ interface TableControlButtonProps {
 export const TableControlButton = ({ onClick, disabled, children }: TableControlButtonProps) => {
   return (
     <button
+      type="button"
       className="rounded-sm border border-lt-border bg-lt-surface p-1 dark:border-dk-border dark:bg-dk-surface"
       onClick={onClick}
       disabled={disabled}

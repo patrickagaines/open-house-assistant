@@ -118,8 +118,8 @@ export const OpenHouseEditForm = ({
           </div>
         </div>
         <div className="mt-6 flex justify-center space-x-4">
-          <Button onClick={handleSubmit}>Update</Button>
-          <Button onClick={handleCloseEditForm}>Cancel</Button>
+          <Button type="submit" onClick={handleSubmit}>Update</Button>
+          <Button type="button" onClick={handleCloseEditForm}>Cancel</Button>
         </div>
       </form>
     </div>
