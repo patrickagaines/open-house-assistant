@@ -49,3 +49,7 @@ export interface Property {
   state: string;
   zipCode: string;
 }
+
+export interface MutationHookProps {
+  successCallback: () => void;
+}

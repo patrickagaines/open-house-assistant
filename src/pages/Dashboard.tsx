@@ -18,10 +18,17 @@ export const Dashboard = () => {
 
   return (
     <>
-      <OpenHousesTable handleOpenEditForm={handleOpenHouseEditForm} setObjectToEdit={setOpenHouseToEdit}  />
+      <OpenHousesTable
+        handleOpenEditForm={handleOpenHouseEditForm}
+        setObjectToEdit={setOpenHouseToEdit}
+      />
       {openHouseEditForm === "open" && (
         <FormShade>
-          <OpenHouseEditForm handleCloseEditForm={handleOpenHouseEditForm} />
+          <OpenHouseEditForm
+            handleCloseEditForm={handleOpenHouseEditForm}
+            openHouseToEdit={openHouseToEdit}
+            setOpenHouseToEdit={setOpenHouseToEdit}
+          />
         </FormShade>
       )}
     </>

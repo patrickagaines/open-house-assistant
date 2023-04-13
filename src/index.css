@@ -58,4 +58,24 @@
     @apply text-lt-heading
     dark:text-dk-heading;
   }
+
+  input {
+    @apply w-full
+    rounded-sm
+    border
+    border-lt-border
+    bg-lt-surface
+    p-1
+    text-sm
+    text-lt-text
+    dark:border-dk-border
+    dark:bg-dk-surface
+    dark:text-dk-text;
+  }
+
+  label {
+    @apply block
+    text-lt-heading
+    dark:text-dk-heading;
+  }
 }
