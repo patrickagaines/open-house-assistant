@@ -29,9 +29,6 @@ export const OpenHouseEditForm = ({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (openHouseToEdit !== undefined) {
-      if (e.target.type === "time") {
-        e.target.value = `${e.target.value}:00`;
-      }
       setOpenHouseToEdit({
         ...openHouseToEdit,
         [e.target.name]: e.target.value,
@@ -39,7 +36,17 @@ export const OpenHouseEditForm = ({
     }
   };
 
-  const handleSubmit = () => {
+  const handleFormatTime = (e: React.FocusEvent<HTMLInputElement>) => {
+    if (openHouseToEdit !== undefined) {
+      setOpenHouseToEdit({
+        ...openHouseToEdit,
+        [e.target.name]: `${e.target.value}:00`,
+      });
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     if (openHouseToEdit !== undefined) {
       mutation.mutate(openHouseToEdit);
     }
@@ -50,9 +57,9 @@ export const OpenHouseEditForm = ({
       className="h-screen overflow-y-scroll bg-lt-ground p-3 dark:bg-dk-ground sm:h-auto sm:max-w-2xl sm:border sm:border-lt-border sm:p-6 sm:dark:border-dk-border"
       style={{ maxWidth: "640px" }}
     >
-      <h2 className="mt-1 text-center text-lg sm:mt-0">Edit Open House</h2>
-      <form className="mt-6" onSubmit={(e) => e.preventDefault()}>
-        <div className="flex flex-col space-y-2">
+      <form className="mt-1 sm:mt-0" onSubmit={(e) => handleSubmit(e)}>
+        <h2 className="text-center text-lg">Edit Open House</h2>
+        <div className="mt-6 flex flex-col space-y-2">
           <div className="grid grid-cols-3 space-x-2">
             <DateInput
               id="date"
@@ -60,20 +67,25 @@ export const OpenHouseEditForm = ({
               label="Date"
               value={openHouseToEdit?.date}
               onChange={handleChange}
+              required
             />
             <TimeInput
               id="startTime"
               name="startTime"
               label="Start Time"
               value={openHouseToEdit?.startTime}
+              onBlur={handleFormatTime}
               onChange={handleChange}
+              required
             />
             <TimeInput
               id="endTime"
               name="endTime"
               label="End Time"
               value={openHouseToEdit?.endTime}
+              onBlur={handleFormatTime}
               onChange={handleChange}
+              required
             />
           </div>
           <div className="flex flex-col space-y-2 sm:grid sm:grid-cols-2 sm:space-x-2 sm:space-y-0">
@@ -83,6 +95,8 @@ export const OpenHouseEditForm = ({
               label="Street Address"
               value={openHouseToEdit?.streetAddress}
               onChange={handleChange}
+              required
+              maxLength={50}
             />
             <TextInput
               id="unitNumber"
@@ -90,6 +104,7 @@ export const OpenHouseEditForm = ({
               label="Unit Number"
               value={openHouseToEdit?.unitNumber ?? "_"}
               onChange={handleChange}
+              maxLength={10}
             />
           </div>
           <div className="grid grid-cols-3 space-x-2">
@@ -99,6 +114,8 @@ export const OpenHouseEditForm = ({
               label="City"
               value={openHouseToEdit?.city}
               onChange={handleChange}
+              required
+              maxLength={25}
             />
             <SelectInput
               id="state"
@@ -107,6 +124,7 @@ export const OpenHouseEditForm = ({
               options={StateAbbreviations}
               value={openHouseToEdit?.state}
               onChange={handleChange}
+              required
             />
             <TextInput
               id="zipCode"
@@ -114,11 +132,13 @@ export const OpenHouseEditForm = ({
               label="Zip Code"
               value={openHouseToEdit?.zipCode}
               onChange={handleChange}
+              required
+              maxLength={10}
             />
           </div>
         </div>
         <div className="mt-6 flex justify-center space-x-4">
-          <Button type="submit" isLoading={mutation.isLoading} onClick={handleSubmit}>
+          <Button type="submit" isLoading={mutation.isLoading}>
             Update
           </Button>
           <Button type="button" onClick={handleCloseEditForm}>

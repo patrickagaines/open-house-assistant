@@ -1,4 +1,4 @@
-interface SelectInputProps {
+interface SelectInputProps extends React.ComponentPropsWithoutRef<"select"> {
   id: string;
   name: string;
   label: string;
@@ -7,7 +7,15 @@ interface SelectInputProps {
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const SelectInput = ({ id, name, label, value, options, onChange }: SelectInputProps) => {
+export const SelectInput = ({
+  id,
+  name,
+  label,
+  value,
+  options,
+  onChange,
+  ...props
+}: SelectInputProps) => {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
@@ -17,6 +25,7 @@ export const SelectInput = ({ id, name, label, value, options, onChange }: Selec
         name={name}
         value={value}
         onChange={onChange}
+        {...props}
       >
         {options.map((option, index) => (
           <option key={`${option} ${index}`} value={option}>

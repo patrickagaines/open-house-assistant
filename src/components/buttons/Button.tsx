@@ -4,7 +4,7 @@ interface ButtonProps {
   type: "button" | "submit" | "reset";
   children: React.ReactNode;
   isLoading?: boolean;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Button = ({ type, children, isLoading, onClick }: ButtonProps) => {
