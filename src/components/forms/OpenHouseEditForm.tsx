@@ -51,7 +51,7 @@ export const OpenHouseEditForm = ({
       style={{ maxWidth: "640px" }}
     >
       <h2 className="mt-1 text-center text-lg sm:mt-0">Edit Open House</h2>
-      <form className="mt-6">
+      <form className="mt-6" onSubmit={(e) => e.preventDefault()}>
         <div className="flex flex-col space-y-2">
           <div className="grid grid-cols-3 space-x-2">
             <DateInput
@@ -118,8 +118,12 @@ export const OpenHouseEditForm = ({
           </div>
         </div>
         <div className="mt-6 flex justify-center space-x-4">
-          <Button type="submit" onClick={handleSubmit}>Update</Button>
-          <Button type="button" onClick={handleCloseEditForm}>Cancel</Button>
+          <Button type="submit" isLoading={mutation.isLoading} onClick={handleSubmit}>
+            Update
+          </Button>
+          <Button type="button" onClick={handleCloseEditForm}>
+            Cancel
+          </Button>
         </div>
       </form>
     </div>
