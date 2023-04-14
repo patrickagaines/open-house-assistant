@@ -4,8 +4,8 @@ import { useCreateOpenHouse } from "../../hooks/openhouses/useCreateOpenHouse";
 import { useProperties } from "../../hooks/properties/useProperties";
 import { stateSelectOptions } from "../../ts/constants";
 import { OpenHouse, SelectInputOptions } from "../../ts/interfaces";
-import { formatOpenHouse } from "../../utils/format-open-house";
 import { successToast } from "../../utils/success-toast";
+import { validateOpenHouse } from "../../utils/validate-open-house";
 import { Button } from "../buttons/Button";
 import { DateInput } from "../inputs/DateInput";
 import { SelectInput } from "../inputs/SelectInput";
@@ -90,7 +90,7 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    mutation.mutate(formatOpenHouse(newOpenHouse));
+    mutation.mutate(validateOpenHouse(newOpenHouse));
   };
 
   return (

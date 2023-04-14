@@ -2,8 +2,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateOpenHouse } from "../../hooks/openhouses/useUpdateOpenHouse";
 import { stateSelectOptions } from "../../ts/constants";
 import { OpenHouse } from "../../ts/interfaces";
-import { formatOpenHouse } from "../../utils/format-open-house";
 import { successToast } from "../../utils/success-toast";
+import { validateOpenHouse } from "../../utils/validate-open-house";
 import { Button } from "../buttons/Button";
 import { DateInput } from "../inputs/DateInput";
 import { SelectInput } from "../inputs/SelectInput";
@@ -43,7 +43,7 @@ export const OpenHouseEditForm = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (openHouseToEdit !== undefined) {
-      mutation.mutate(formatOpenHouse(openHouseToEdit));
+      mutation.mutate(validateOpenHouse(openHouseToEdit));
     }
   };
 

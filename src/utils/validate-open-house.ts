@@ -1,6 +1,6 @@
 import { OpenHouse } from "../ts/interfaces";
 
-export const formatOpenHouse = (openHouse: OpenHouse): OpenHouse => {
+export const validateOpenHouse = (openHouse: OpenHouse): OpenHouse => {
   const formattedOpenHouse: OpenHouse = openHouse;
 
   if (formattedOpenHouse.startTime.length === 5) {
