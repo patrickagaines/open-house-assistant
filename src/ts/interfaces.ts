@@ -13,7 +13,7 @@ export interface OpenHouse {
   endTime: string;
   propertyId: number;
   streetAddress: string;
-  unitNumber?: string;
+  unitNumber: string | null;
   city: string;
   state: string;
   zipCode: string;
@@ -44,10 +44,15 @@ export interface GuestToRemove {
 export interface Property {
   id?: number;
   streetAddress: string;
-  unitNumber?: string;
+  unitNumber: string | null;
   city: string;
   state: string;
   zipCode: string;
+}
+
+export interface SelectInputOptions {
+  label: string;
+  value: string | number;
 }
 
 export interface MutationHookProps {

@@ -1,9 +1,13 @@
+import { SelectInputOptions } from "../../ts/interfaces";
+
 interface SelectInputProps extends React.ComponentPropsWithoutRef<"select"> {
   id: string;
   name: string;
   label: string;
-  value: string | undefined;
-  options: string[];
+  value: string | number | undefined;
+  options: SelectInputOptions[];
+  isLoading?: boolean;
+  error?: unknown;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -13,6 +17,8 @@ export const SelectInput = ({
   label,
   value,
   options,
+  isLoading,
+  error,
   onChange,
   ...props
 }: SelectInputProps) => {
@@ -27,11 +33,17 @@ export const SelectInput = ({
         onChange={onChange}
         {...props}
       >
-        {options.map((option, index) => (
-          <option key={`${option} ${index}`} value={option}>
-            {option}
-          </option>
-        ))}
+        {isLoading ? (
+          <option>Loading...</option>
+        ) : error instanceof Error ? (
+          <option>Failed to load options</option>
+        ) : (
+          options.map((option, index) => (
+            <option key={`${option} ${index}`} value={option.value}>
+              {option.label}
+            </option>
+          ))
+        )}
       </select>
     </div>
   );

@@ -3,19 +3,10 @@ interface TimeInputProps extends React.ComponentPropsWithoutRef<"input"> {
   name: string;
   label: string;
   value: string | undefined;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TimeInput = ({
-  id,
-  name,
-  label,
-  value,
-  onBlur,
-  onChange,
-  ...props
-}: TimeInputProps) => {
+export const TimeInput = ({ id, name, label, value, onChange, ...props }: TimeInputProps) => {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
@@ -25,7 +16,6 @@ export const TimeInput = ({
         id={id}
         name={name}
         value={value}
-        onBlur={onBlur}
         onChange={onChange}
         {...props}
       />

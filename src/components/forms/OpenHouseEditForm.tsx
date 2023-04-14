@@ -1,7 +1,8 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateOpenHouse } from "../../hooks/openhouses/useUpdateOpenHouse";
-import { StateAbbreviations } from "../../ts/constants";
+import { stateSelectOptions } from "../../ts/constants";
 import { OpenHouse } from "../../ts/interfaces";
+import { formatOpenHouse } from "../../utils/format-open-house";
 import { successToast } from "../../utils/success-toast";
 import { Button } from "../buttons/Button";
 import { DateInput } from "../inputs/DateInput";
@@ -20,6 +21,8 @@ export const OpenHouseEditForm = ({
   openHouseToEdit,
   setOpenHouseToEdit,
 }: OpenHouseEditFormProps) => {
+  const queryClient = useQueryClient();
+
   const successCallback = () => {
     queryClient.invalidateQueries({ queryKey: ["openHouses"] });
     successToast("Open house updated.");
@@ -27,7 +30,6 @@ export const OpenHouseEditForm = ({
   };
 
   const mutation = useUpdateOpenHouse({ successCallback });
-  const queryClient = useQueryClient();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (openHouseToEdit !== undefined) {
@@ -38,19 +40,10 @@ export const OpenHouseEditForm = ({
     }
   };
 
-  const handleFormatTime = (e: React.FocusEvent<HTMLInputElement>) => {
-    if (openHouseToEdit !== undefined) {
-      setOpenHouseToEdit({
-        ...openHouseToEdit,
-        [e.target.name]: `${e.target.value}:00`,
-      });
-    }
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (openHouseToEdit !== undefined) {
-      mutation.mutate(openHouseToEdit);
+      mutation.mutate(formatOpenHouse(openHouseToEdit));
     }
   };
 
@@ -76,7 +69,6 @@ export const OpenHouseEditForm = ({
               name="startTime"
               label="Start Time"
               value={openHouseToEdit?.startTime}
-              onBlur={handleFormatTime}
               onChange={handleChange}
               required
             />
@@ -85,7 +77,6 @@ export const OpenHouseEditForm = ({
               name="endTime"
               label="End Time"
               value={openHouseToEdit?.endTime}
-              onBlur={handleFormatTime}
               onChange={handleChange}
               required
             />
@@ -123,7 +114,7 @@ export const OpenHouseEditForm = ({
               id="state"
               name="state"
               label="State"
-              options={StateAbbreviations}
+              options={stateSelectOptions}
               value={openHouseToEdit?.state}
               onChange={handleChange}
               required

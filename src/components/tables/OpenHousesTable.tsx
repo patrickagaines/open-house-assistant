@@ -11,11 +11,16 @@ import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
 interface OpenHousesTableProps {
+  handleOpenCreateForm: () => void;
   handleOpenEditForm: () => void;
   setObjectToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
 }
 
-export const OpenHousesTable = ({ handleOpenEditForm, setObjectToEdit }: OpenHousesTableProps) => {
+export const OpenHousesTable = ({
+  handleOpenEditForm,
+  setObjectToEdit,
+  handleOpenCreateForm,
+}: OpenHousesTableProps) => {
   const { isLoading, error, data } = useOpenHouses();
 
   console.log(data);
@@ -98,10 +103,6 @@ export const OpenHousesTable = ({ handleOpenEditForm, setObjectToEdit }: OpenHou
     []
   );
 
-  const handleClick = () => {
-    console.log("clicked");
-  };
-
   return (
     <DataTable<OpenHouse>
       title="Open Houses"
@@ -110,7 +111,7 @@ export const OpenHousesTable = ({ handleOpenEditForm, setObjectToEdit }: OpenHou
       data={data}
       columns={columns}
       actionButton={
-        <TableActionButton onClick={handleClick} icon={<PlusIcon />}>
+        <TableActionButton onClick={handleOpenCreateForm} icon={<PlusIcon />}>
           Create
         </TableActionButton>
       }

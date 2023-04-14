@@ -1,4 +1,6 @@
-export const StateAbbreviations = [
+import { SelectInputOptions } from "./interfaces";
+
+const stateAbbreviations = [
   "AL",
   "AK",
   "AZ",
@@ -50,3 +52,8 @@ export const StateAbbreviations = [
   "WI",
   "WY",
 ];
+
+export const stateSelectOptions: SelectInputOptions[] = stateAbbreviations.map((string) => ({
+  label: string,
+  value: string,
+}));

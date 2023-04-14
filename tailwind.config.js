@@ -26,6 +26,7 @@ export default {
         "dk-heading": "#FFFFFF",
         "dk-text": "RGB(255, 255, 255, .87)",
         "dk-focus": "#FFE284",
+        "dk-input-disabled": "#141c27",
         "primary-color-text": "#212529",
       },
     },

@@ -73,6 +73,21 @@
     dark:text-dk-text;
   }
 
+  input:disabled {
+    @apply bg-gray-200
+    dark:bg-dk-input-disabled
+    dark:text-white
+    dark:text-opacity-60;
+  }
+
+  select:disabled {
+    opacity: 1;
+    @apply bg-gray-200
+    dark:bg-dk-input-disabled
+    dark:text-white
+    dark:text-opacity-60;
+  }
+
   label {
     @apply block
     text-lt-heading
