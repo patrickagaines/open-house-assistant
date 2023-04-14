@@ -11,5 +11,9 @@ export const formatOpenHouse = (openHouse: OpenHouse): OpenHouse => {
     formattedOpenHouse.endTime = `${formattedOpenHouse.endTime}:00`;
   }
 
+  if (formattedOpenHouse.unitNumber?.trim() === "") {
+    formattedOpenHouse.unitNumber = null;
+  }
+
   return formattedOpenHouse;
 };
