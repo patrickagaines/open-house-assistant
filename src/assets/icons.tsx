@@ -39,6 +39,26 @@ export const ChevronLeftIcon = () => {
   );
 };
 
+export const CloseIcon = () => {
+  return (
+    <svg
+      className="stroke-lt-text dark:stroke-dk-text"
+      width="10"
+      height="10"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M13 13L7.00002 7.00002M7.00002 7.00002L1 1M7.00002 7.00002L13 1M7.00002 7.00002L1 13"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
 export const DashboardIcon = () => {
   return (
     <svg
@@ -237,6 +257,21 @@ export const PropertiesIcon = () => {
       <path d="M19 11H17V13H19V11Z" />
       <path d="M19 15H17V17H19V15Z" />
       <path d="M10 3V4.97L12 6.4V5H21V19H17V21H23V3H10Z" />
+    </svg>
+  );
+};
+
+export const SuccessIcon = () => {
+  return (
+    <svg
+      className="fill-lt-text dark:fill-dk-text"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M10 0C4.49 0 0 4.49 0 10C0 15.51 4.49 20 10 20C15.51 20 20 15.51 20 10C20 4.49 15.51 0 10 0ZM14.78 7.7L9.11 13.37C8.96937 13.5105 8.77875 13.5893 8.58 13.5893C8.38125 13.5893 8.19063 13.5105 8.05 13.37L5.22 10.54C5.08052 10.3989 5.0023 10.2084 5.0023 10.01C5.0023 9.81157 5.08052 9.62114 5.22 9.48C5.51 9.19 5.99 9.19 6.28 9.48L8.58 11.78L13.72 6.64C14.01 6.35 14.49 6.35 14.78 6.64C15.07 6.93 15.07 7.4 14.78 7.7Z" />
     </svg>
   );
 };

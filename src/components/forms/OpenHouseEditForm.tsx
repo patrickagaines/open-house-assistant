@@ -2,6 +2,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useUpdateOpenHouse } from "../../hooks/openhouses/useUpdateOpenHouse";
 import { StateAbbreviations } from "../../ts/constants";
 import { OpenHouse } from "../../ts/interfaces";
+import { successToast } from "../../utils/success-toast";
 import { Button } from "../buttons/Button";
 import { DateInput } from "../inputs/DateInput";
 import { SelectInput } from "../inputs/SelectInput";
@@ -21,6 +22,7 @@ export const OpenHouseEditForm = ({
 }: OpenHouseEditFormProps) => {
   const successCallback = () => {
     queryClient.invalidateQueries({ queryKey: ["openHouses"] });
+    successToast("Open house updated.");
     handleCloseEditForm();
   };
 

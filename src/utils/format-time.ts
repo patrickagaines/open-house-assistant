@@ -7,5 +7,9 @@ export const formatTime = (timeString: string) => {
     hours = (Number(hours) - 12).toString();
   }
 
+  if (Number(hours) === 0) {
+    hours = "12";
+  }
+
   return `${hours}:${minutes} ${period}`;
 };
