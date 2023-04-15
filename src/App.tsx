@@ -7,6 +7,7 @@ import { Callback } from "./pages/Callback";
 import { Dashboard } from "./pages/Dashboard";
 import { Guests } from "./pages/Guests";
 import { Home } from "./pages/Home";
+import { OpenHouseDetail } from "./pages/OpenHouseDetail";
 import { Properties } from "./pages/Properties";
 
 export const App = () => {
@@ -21,6 +22,10 @@ export const App = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<AuthenticationGuard component={Dashboard} />} />
+        <Route
+          path="/open-houses/:openHouseId"
+          element={<AuthenticationGuard component={OpenHouseDetail} />}
+        />
         <Route path="/properties" element={<AuthenticationGuard component={Properties} />} />
         <Route path="/guests" element={<AuthenticationGuard component={Guests} />} />
         <Route path="/callback" element={<Callback />} />

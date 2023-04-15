@@ -200,7 +200,9 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
           </div>
         </div>
         <div className="mt-6 flex justify-center space-x-4">
-          <Button type="submit">Create</Button>
+          <Button type="submit" isLoading={mutation.isLoading}>
+            Create
+          </Button>
           <Button type="button" onClick={handleCloseCreateForm}>
             Cancel
           </Button>

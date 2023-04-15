@@ -1,8 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { DetailIcon } from "../../assets/icons";
 
-export const TableDetailButton = () => {
+interface TableDetailButtonProps {
+  route: string;
+}
+
+export const TableDetailButton = ({ route }: TableDetailButtonProps) => {
+  const navigate = useNavigate();
+
   return (
-    <button type="button" className="mx-auto block">
+    <button type="button" className="mx-auto block" onClick={() => navigate(route)}>
       <DetailIcon />
     </button>
   );

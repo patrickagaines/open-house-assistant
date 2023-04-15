@@ -94,7 +94,7 @@ export const OpenHousesTable = ({
         id: "view",
         accessorKey: "id",
         header: "View",
-        cell: () => <TableDetailButton />,
+        cell: (info) => (<TableDetailButton route={`/open-houses/${info.getValue()}`} />),
         meta: {
           size: "auto",
         },
