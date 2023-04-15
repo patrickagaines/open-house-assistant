@@ -34,6 +34,7 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
 
   const successCallback = () => {
     queryClient.invalidateQueries({ queryKey: ["openHouses"] });
+    queryClient.invalidateQueries({ queryKey: ["properties"] });
     successToast("Open house created.");
     handleCloseCreateForm();
   };

@@ -5,7 +5,7 @@ import { GetOne } from "../../api/properties";
 export const usePropertyById = (propertyId: number) => {
   const auth = useAuth0();
   return useQuery({
-    queryKey: ["propertyById"],
+    queryKey: ["properties", propertyId],
     queryFn: () => GetOne(auth, propertyId),
   });
 };

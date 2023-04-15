@@ -5,7 +5,7 @@ import { GetOne } from "../../api/open-houses";
 export const useOpenHouseById = (openHouseId: number) => {
   const auth = useAuth0();
   return useQuery({
-    queryKey: ["openHouseById"],
+    queryKey: ["openHouses", openHouseId],
     queryFn: () => GetOne(auth, openHouseId),
   });
 };

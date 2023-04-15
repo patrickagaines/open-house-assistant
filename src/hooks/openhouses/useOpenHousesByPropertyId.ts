@@ -5,7 +5,7 @@ import { GetAllByProperty } from "../../api/open-houses";
 export const useOpenHousesByPropertyId = (propertyId: number) => {
   const auth = useAuth0();
   return useQuery({
-    queryKey: ["openHousesByPropertyId"],
+    queryKey: ["openHouses", "byProperty", propertyId],
     queryFn: () => GetAllByProperty(auth, propertyId),
   });
 };

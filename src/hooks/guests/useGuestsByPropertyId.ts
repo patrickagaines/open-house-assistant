@@ -5,7 +5,7 @@ import { GetAllByProperty } from "../../api/guests";
 export const useGuestsByPropertyId = (propertyId: number) => {
   const auth = useAuth0();
   return useQuery({
-    queryKey: ["guestsByPropertyId"],
+    queryKey: ["guests", "byProperty", propertyId],
     queryFn: () => GetAllByProperty(auth, propertyId),
   });
 };

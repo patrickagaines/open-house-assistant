@@ -5,7 +5,7 @@ import { GetOne } from "../../api/guests";
 export const useGuestById = (guestId: number) => {
   const auth = useAuth0();
   return useQuery({
-    queryKey: ["guestById"],
+    queryKey: ["guests", guestId],
     queryFn: () => GetOne(auth, guestId),
   });
 };

@@ -25,6 +25,7 @@ export const OpenHouseEditForm = ({
 
   const successCallback = () => {
     queryClient.invalidateQueries({ queryKey: ["openHouses"] });
+    queryClient.invalidateQueries({ queryKey: ["properties"] });
     successToast("Open house updated.");
     handleCloseEditForm();
   };
