@@ -1,6 +1,6 @@
+import { UseQueryResult } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { PlusIcon } from "../../assets/icons";
-import { useOpenHouses } from "../../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
 import { formatDate } from "../../utils/format-date";
@@ -11,17 +11,19 @@ import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
 interface OpenHousesTableProps {
+  query: UseQueryResult<OpenHouse[], unknown>;
   handleOpenCreateForm: () => void;
   handleOpenEditForm: () => void;
-  setObjectToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
+  setOpenHouseToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
 }
 
-export const OpenHousesTable = ({
+export const OpenHouseTable = ({
+  query,
   handleOpenEditForm,
-  setObjectToEdit,
+  setOpenHouseToEdit,
   handleOpenCreateForm,
 }: OpenHousesTableProps) => {
-  const { isLoading, error, data } = useOpenHouses();
+  const { isLoading, error, data } = query;
 
   console.log(data);
 
@@ -82,7 +84,7 @@ export const OpenHousesTable = ({
         cell: (info) => (
           <TableEditButton<OpenHouse>
             handleOpenEditForm={handleOpenEditForm}
-            setObjectToEdit={setObjectToEdit}
+            setObjectToEdit={setOpenHouseToEdit}
             objectToEdit={info.row.original}
           />
         ),
@@ -94,7 +96,7 @@ export const OpenHousesTable = ({
         id: "view",
         accessorKey: "id",
         header: "View",
-        cell: (info) => (<TableDetailButton route={`/open-houses/${info.getValue()}`} />),
+        cell: (info) => <TableDetailButton route={`/open-houses/${info.getValue()}`} />,
         meta: {
           size: "auto",
         },

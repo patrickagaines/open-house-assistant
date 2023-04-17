@@ -4,10 +4,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { FormShade } from "../components/forms/FormShade";
 import { OpenHouseCreateForm } from "../components/forms/OpenHouseCreateForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
-import { OpenHousesTable } from "../components/tables/OpenHousesTable";
+import { OpenHouseTable } from "../components/tables/OpenHouseTable";
+import { useOpenHouses } from "../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../ts/interfaces";
 
 export const Dashboard = () => {
+  const openHousesQuery = useOpenHouses();
+
   const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
@@ -30,10 +33,11 @@ export const Dashboard = () => {
 
   return (
     <>
-      <OpenHousesTable
+      <OpenHouseTable
+        query={openHousesQuery}
         handleOpenCreateForm={handleOpenHouseCreateForm}
         handleOpenEditForm={handleOpenHouseEditForm}
-        setObjectToEdit={setOpenHouseToEdit}
+        setOpenHouseToEdit={setOpenHouseToEdit}
       />
       {openHouseCreateForm === "open" && (
         <FormShade>
