@@ -32,7 +32,6 @@ export const DataTableControls = <T,>(table: Table<T>) => {
         </strong>
       </span>
       <select
-        className="rounded-sm border border-lt-border bg-lt-surface dark:border-dk-border dark:bg-dk-surface"
         value={table.getState().pagination.pageSize}
         onChange={(e) => {
           table.setPageSize(Number(e.target.value));

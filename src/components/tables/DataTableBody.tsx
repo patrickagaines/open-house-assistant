@@ -35,14 +35,14 @@ export const DataTableBody = <T,>({ isLoading, error, table, columns }: DataTabl
   }
 
   return (
-    <tbody className="bg-lt-surface dark:bg-dk-surface">
+    <tbody className="theme-surface">
       {table.getRowModel().rows.map((row) => (
         <tr key={row.id}>
           {row.getVisibleCells().map((cell) => (
             <td
               key={cell.id}
               width={(cell.column.columnDef as AugmentedColumnDef<T>).meta.size}
-              className="border border-lt-border p-2 dark:border-dk-border"
+              className="theme-border p-2"
             >
               {flexRender(cell.column.columnDef.cell, cell.getContext())}
             </td>

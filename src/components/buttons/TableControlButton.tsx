@@ -8,7 +8,7 @@ export const TableControlButton = ({ onClick, disabled, children }: TableControl
   return (
     <button
       type="button"
-      className="rounded-sm border border-lt-border bg-lt-surface p-1 dark:border-dk-border dark:bg-dk-surface"
+      className="theme-surface theme-border rounded-sm p-1"
       onClick={onClick}
       disabled={disabled}
     >

@@ -20,7 +20,7 @@ export const OpenHouseDetail = () => {
       <h1 className="text-center text-2xl md:text-3xl">Manage Open House</h1>
       {openHouse !== undefined && (
         <div className="mt-6 sm:flex sm:justify-center sm:space-x-6 lg:justify-start">
-          <div className="border border-lt-border bg-lt-surface p-4 dark:border-dk-border dark:bg-dk-surface sm:w-400">
+          <div className="theme-surface theme-border p-4 sm:w-400">
             <span className="block text-center">
               {openHouse.streetAddress}
               {openHouse.unitNumber ? ` Unit ${openHouse.unitNumber}, ` : ` `}

@@ -19,7 +19,7 @@ export const NavMenu = ({ navMenu, setNavMenu }: NavMenuProps) => {
 
   return (
     <div
-      className={`fixed -right-72 top-16 z-20 h-full w-72 border-l border-lt-border bg-lt-surface transition-transform duration-300 ease-in dark:border-dk-border dark:bg-dk-surface lg:hidden ${
+      className={`theme-surface fixed -right-72 top-16 z-20 h-full w-72 border-l border-lt-border transition-transform duration-300 ease-in dark:border-dk-border lg:hidden ${
         navMenu === "open" && "-translate-x-72"
       }`}
     >

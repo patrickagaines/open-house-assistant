@@ -49,7 +49,7 @@ export const OpenHouseEditForm = ({
   };
 
   return (
-    <div className="h-screen overflow-y-scroll bg-lt-ground p-3 dark:bg-dk-ground sm:h-auto sm:border sm:border-lt-border sm:p-6 sm:dark:border-dk-border">
+    <div className="sm:theme-border h-screen overflow-y-scroll bg-lt-ground p-3 dark:bg-dk-ground sm:h-auto sm:p-6">
       <form className="mt-1 sm:mt-0" onSubmit={(e) => handleSubmit(e)}>
         <h2 className="text-center text-lg">Edit Open House</h2>
         <div className="mt-6 flex flex-col space-y-2">

@@ -26,7 +26,7 @@ export const SelectInput = ({
     <div>
       <label htmlFor={id}>{label}</label>
       <select
-        className="mt-1 w-full rounded-sm border border-lt-border bg-lt-surface p-1 text-sm text-lt-text dark:border-dk-border dark:bg-dk-surface dark:text-dk-text"
+        className="mt-1 w-full p-1"
         id={id}
         name={name}
         value={value}

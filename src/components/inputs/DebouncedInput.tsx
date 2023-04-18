@@ -28,7 +28,7 @@ export const DebouncedInput = ({
   return (
     <input
       type="text"
-      className="w-48 rounded-sm border border-lt-border bg-lt-surface p-2 shadow-sm placeholder:text-lt-text dark:border-dk-border dark:bg-dk-surface dark:placeholder:text-dk-text"
+      className="w-48 rounded-sm p-2 shadow-sm"
       placeholder="Search all columns..."
       value={value}
       onChange={(e) => setValue(e.target.value)}

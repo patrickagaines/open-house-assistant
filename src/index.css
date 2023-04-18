@@ -68,20 +68,14 @@
     p-1
     text-sm
     text-lt-text
+    placeholder:text-lt-text
     dark:border-dk-border
     dark:bg-dk-surface
-    dark:text-dk-text;
+    dark:text-dk-text
+    dark:placeholder:text-dk-text;
   }
 
   input:disabled {
-    @apply bg-gray-200
-    dark:bg-dk-input-disabled
-    dark:text-white
-    dark:text-opacity-60;
-  }
-
-  select:disabled {
-    opacity: 1;
     @apply bg-gray-200
     dark:bg-dk-input-disabled
     dark:text-white
@@ -92,5 +86,34 @@
     @apply block
     text-lt-heading
     dark:text-dk-heading;
+  }
+
+  select {
+    @apply rounded-sm
+    border
+    border-lt-border
+    bg-lt-surface
+    text-sm
+    dark:border-dk-border
+    dark:bg-dk-surface;
+  }
+
+  select:disabled {
+    opacity: 1;
+    @apply bg-gray-200
+    dark:bg-dk-input-disabled
+    dark:text-white
+    dark:text-opacity-60;
+  }
+
+  .theme-surface {
+    @apply bg-lt-surface
+    dark:bg-dk-surface;
+  }
+
+  .theme-border {
+    @apply border
+    border-lt-border
+    dark:border-dk-border;
   }
 }

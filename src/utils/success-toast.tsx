@@ -16,7 +16,7 @@ export const successToast = (message: string) => {
     pauseOnHover: true,
     draggable: true,
     className:
-      "bg-lt-surface dark:bg-dk-surface text-lt-text dark:text-dk-text dark:border dark:border-dk-border rounded-sm shadow-md dark:shadow-none",
+      "theme-surface text-lt-text dark:text-dk-text dark:border dark:border-dk-border rounded-sm shadow-md dark:shadow-none",
     progressClassName:
       "bg-gradient-to-r from-lt-primary to-lt-primary dark:from-dk-text dark:to-dk-text",
   });
