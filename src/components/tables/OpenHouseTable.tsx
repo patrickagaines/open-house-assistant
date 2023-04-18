@@ -10,7 +10,7 @@ import { TableDetailButton } from "../buttons/TableDetailButton";
 import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
-interface OpenHousesTableProps {
+interface OpenHouseTableProps {
   query: UseQueryResult<OpenHouse[], unknown>;
   handleOpenCreateForm: () => void;
   handleOpenEditForm: () => void;
@@ -22,10 +22,8 @@ export const OpenHouseTable = ({
   handleOpenEditForm,
   setOpenHouseToEdit,
   handleOpenCreateForm,
-}: OpenHousesTableProps) => {
+}: OpenHouseTableProps) => {
   const { isLoading, error, data } = query;
-
-  console.log(data);
 
   const columns = useMemo<AugmentedColumnDef<OpenHouse>[]>(
     () => [
