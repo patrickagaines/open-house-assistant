@@ -48,6 +48,7 @@ export const GuestCheckInForm = ({
             label="First Name"
             value={guestToCheckIn.firstName}
             onChange={handleChange}
+            maxLength={35}
             required
           />
           <TextInput
@@ -56,22 +57,27 @@ export const GuestCheckInForm = ({
             label="Last Name"
             value={guestToCheckIn.lastName}
             onChange={handleChange}
+            maxLength={35}
             required
           />
           <TextInput
+            type="tel"
             id="phoneNumber"
             name="phoneNumber"
             label="Phone Number"
             value={guestToCheckIn.phoneNumber}
             onChange={handleChange}
+            maxLength={15}
             required
           />
           <TextInput
+            type="email"
             id="emailAddress"
             name="emailAddress"
             label="Email Address"
             value={guestToCheckIn.emailAddress}
             onChange={handleChange}
+            maxLength={60}
             required
           />
         </div>

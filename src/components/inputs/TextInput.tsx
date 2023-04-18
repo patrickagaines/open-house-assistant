@@ -1,4 +1,5 @@
 interface TextInputProps extends React.ComponentPropsWithoutRef<"input"> {
+  type?: "text" | "tel" | "email";
   id: string;
   name: string;
   label: string;
@@ -6,12 +7,20 @@ interface TextInputProps extends React.ComponentPropsWithoutRef<"input"> {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const TextInput = ({ id, name, label, value, onChange, ...props }: TextInputProps) => {
+export const TextInput = ({
+  type = "text",
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  ...props
+}: TextInputProps) => {
   return (
     <div>
       <label htmlFor={id}>{label}</label>
       <input
-        type="text"
+        type={type}
         className="mt-1"
         id={id}
         name={name}
