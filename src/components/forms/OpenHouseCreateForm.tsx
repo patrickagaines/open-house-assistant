@@ -41,7 +41,6 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
 
   const mutation = useCreateOpenHouse({ successCallback });
   const { isLoading, error, data } = useProperties();
-  console.log(data);
 
   const propertySelectOptions: SelectInputOptions[] = [{ label: "New Property", value: 0 }];
 
@@ -104,7 +103,7 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
               id="date"
               name="date"
               label="Date"
-              value={newOpenHouse?.date}
+              value={newOpenHouse.date}
               onChange={handleChange}
               required
             />

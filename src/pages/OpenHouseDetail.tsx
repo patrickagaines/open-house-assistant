@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
+import { GuestCheckInForm } from "../components/forms/GuestCheckInForm";
 import { OpenHouseDeleteForm } from "../components/forms/OpenHouseDeleteForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
@@ -19,10 +20,25 @@ export const OpenHouseDetail = () => {
   const { isLoading, error, data: openHouse } = useOpenHouseById(Number(params.openHouseId));
   const guestQuery = useGuestsByOpenHouseId(Number(params.openHouseId));
 
+  const [guestCheckInForm, setGuestCheckInForm] = useState<"open" | "closed">("closed");
+  const [activeOpenHouse, setActiveOpenHouse] = useState<OpenHouse>();
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
   const [openHouseDeleteForm, setOpenHouseDeleteForm] = useState<"closed" | "open">("closed");
   const [openHouseToDelete, setOpenHouseToDelete] = useState<OpenHouse>();
+
+  const handleGuestCheckInForm = () => {
+    if (guestCheckInForm === "closed") {
+      setGuestCheckInForm("open");
+    } else {
+      setGuestCheckInForm("closed");
+    }
+  };
+
+  const handleLaunchButton = () => {
+    setActiveOpenHouse(openHouse);
+    handleGuestCheckInForm();
+  };
 
   const handleOpenHouseEditForm = () => {
     if (openHouseEditForm === "closed") {
@@ -82,7 +98,9 @@ export const OpenHouseDetail = () => {
               </div>
             </div>
             <div className="mt-6 flex justify-center space-x-2 sm:flex-col sm:space-x-0 sm:space-y-2">
-              <Button type="button">Launch</Button>
+              <Button type="button" onClick={handleLaunchButton}>
+                Launch
+              </Button>
               <Button type="button" onClick={handleEditButton}>
                 Edit
               </Button>
@@ -97,6 +115,12 @@ export const OpenHouseDetail = () => {
         )}
       </section>
       <GuestTable query={guestQuery} />
+      {guestCheckInForm === "open" && (
+        <GuestCheckInForm
+          handleCloseCheckInForm={handleGuestCheckInForm}
+          activeOpenHouse={activeOpenHouse}
+        />
+      )}
       {openHouseEditForm === "open" && (
         <FormShade>
           <OpenHouseEditForm

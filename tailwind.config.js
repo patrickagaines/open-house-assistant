@@ -31,6 +31,7 @@ export default {
       },
       width: {
         400: "400px",
+        100: "28rem",
       },
     },
   },
