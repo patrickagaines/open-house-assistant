@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
+import { OpenHouseDeleteForm } from "../components/forms/OpenHouseDeleteForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
 import { GuestTable } from "../components/tables/GuestTable";
@@ -20,6 +21,8 @@ export const OpenHouseDetail = () => {
 
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
+  const [openHouseDeleteForm, setOpenHouseDeleteForm] = useState<"closed" | "open">("closed");
+  const [openHouseToDelete, setOpenHouseToDelete] = useState<OpenHouse>();
 
   const handleOpenHouseEditForm = () => {
     if (openHouseEditForm === "closed") {
@@ -34,6 +37,19 @@ export const OpenHouseDetail = () => {
     handleOpenHouseEditForm();
   };
 
+  const handleOpenHouseDeleteForm = () => {
+    if (openHouseDeleteForm === "closed") {
+      setOpenHouseDeleteForm("open");
+    } else {
+      setOpenHouseDeleteForm("closed");
+    }
+  };
+
+  const handleDeleteButton = () => {
+    setOpenHouseToDelete(openHouse);
+    handleOpenHouseDeleteForm();
+  };
+
   if (isLoading) {
     return <PageLoader />;
   }
@@ -45,7 +61,7 @@ export const OpenHouseDetail = () => {
         {openHouse !== undefined && (
           <div className="mt-6 sm:flex sm:justify-center sm:space-x-6 lg:justify-start">
             <div className="theme-surface theme-border p-4 sm:w-400">
-              <span className="block text-center">
+              <span className="block text-center font-bold">
                 {openHouse.streetAddress}
                 {openHouse.unitNumber ? ` Unit ${openHouse.unitNumber}, ` : ` `}
                 <br />
@@ -70,7 +86,9 @@ export const OpenHouseDetail = () => {
               <Button type="button" onClick={handleEditButton}>
                 Edit
               </Button>
-              <Button type="button">Delete</Button>
+              <Button type="button" onClick={handleDeleteButton}>
+                Delete
+              </Button>
             </div>
           </div>
         )}
@@ -85,6 +103,14 @@ export const OpenHouseDetail = () => {
             handleCloseEditForm={handleOpenHouseEditForm}
             openHouseToEdit={openHouseToEdit}
             setOpenHouseToEdit={setOpenHouseToEdit}
+          />
+        </FormShade>
+      )}
+      {openHouseDeleteForm === "open" && (
+        <FormShade>
+          <OpenHouseDeleteForm
+            handleCloseDeleteForm={handleOpenHouseDeleteForm}
+            openHouseToDelete={openHouseToDelete}
           />
         </FormShade>
       )}
