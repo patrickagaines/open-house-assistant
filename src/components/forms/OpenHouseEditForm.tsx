@@ -49,10 +49,7 @@ export const OpenHouseEditForm = ({
   };
 
   return (
-    <div
-      className="h-screen overflow-y-scroll bg-lt-ground p-3 dark:bg-dk-ground sm:h-auto sm:max-w-2xl sm:border sm:border-lt-border sm:p-6 sm:dark:border-dk-border"
-      style={{ maxWidth: "640px" }}
-    >
+    <div className="h-screen overflow-y-scroll bg-lt-ground p-3 dark:bg-dk-ground sm:h-auto sm:border sm:border-lt-border sm:p-6 sm:dark:border-dk-border">
       <form className="mt-1 sm:mt-0" onSubmit={(e) => handleSubmit(e)}>
         <h2 className="text-center text-lg">Edit Open House</h2>
         <div className="mt-6 flex flex-col space-y-2">
