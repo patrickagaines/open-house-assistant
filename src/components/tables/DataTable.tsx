@@ -12,7 +12,7 @@ import { DataTableBody } from "./DataTableBody";
 import { DataTableControls } from "./DataTableControls";
 
 interface DataTableProps<T> {
-  title: string;
+  title: React.ReactElement;
   isLoading: boolean;
   error: unknown;
   data: T[] | undefined;
@@ -49,7 +49,7 @@ export const DataTable = <T,>({
 
   return (
     <section className="text-sm">
-      <h1 className="text-center text-2xl md:text-3xl">{title}</h1>
+      {title}
       <div className="mt-4 flex items-baseline justify-between">
         <DebouncedInput value={globalFilter ?? ""} onChange={(value) => setGlobalFilter(value)} />
         {actionButton}

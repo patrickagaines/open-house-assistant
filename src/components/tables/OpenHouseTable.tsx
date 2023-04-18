@@ -105,7 +105,7 @@ export const OpenHouseTable = ({
 
   return (
     <DataTable<OpenHouse>
-      title="Open Houses"
+      title={<h1 className="text-center text-2xl md:text-3xl">Open Houses</h1>}
       isLoading={isLoading}
       error={error}
       data={data}

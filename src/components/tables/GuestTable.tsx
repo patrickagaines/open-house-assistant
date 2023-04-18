@@ -52,7 +52,7 @@ export const GuestTable = ({ query }: GuestTableProps) => {
 
   return (
     <DataTable<Guest>
-      title="Guests"
+      title={<h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Guests</h2>}
       isLoading={isLoading}
       error={error}
       data={data}

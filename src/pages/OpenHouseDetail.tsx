@@ -18,7 +18,7 @@ export const OpenHouseDetail = () => {
 
   return (
     <>
-      <section className="mb-10 md:mb-12">
+      <section>
         <h1 className="text-center text-2xl md:text-3xl">Manage Open House</h1>
         {openHouse !== undefined && (
           <div className="mt-6 sm:flex sm:justify-center sm:space-x-6 lg:justify-start">
