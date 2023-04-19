@@ -5,7 +5,7 @@ import { useProperties } from "../../hooks/properties/useProperties";
 import { stateSelectOptions } from "../../ts/constants";
 import { NewOpenHouse, SelectInputOptions } from "../../ts/interfaces";
 import { successToast } from "../../utils/success-toast";
-import { validateOpenHouse } from "../../utils/validate-open-house";
+import { validateNewOpenHouse } from "../../utils/validate-open-house";
 import { Button } from "../buttons/Button";
 import { DateInput } from "../inputs/DateInput";
 import { SelectInput } from "../inputs/SelectInput";
@@ -90,7 +90,7 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    mutation.mutate(validateOpenHouse(newOpenHouse));
+    mutation.mutate(validateNewOpenHouse(newOpenHouse));
   };
 
   return (

@@ -1,5 +1,5 @@
 export interface OpenHouse {
-  id?: number;
+  id: number;
   date: string;
   startTime: string;
   endTime: string;
