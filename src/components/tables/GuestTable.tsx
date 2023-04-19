@@ -3,13 +3,16 @@ import { useMemo } from "react";
 import { Guest } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
 import { Button } from "../buttons/Button";
+import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
 interface GuestTableProps {
   query: UseQueryResult<Guest[], unknown>;
+  handleOpenEditForm: () => void;
+  setGuestToEdit: React.Dispatch<React.SetStateAction<Guest | undefined>>;
 }
 
-export const GuestTable = ({ query }: GuestTableProps) => {
+export const GuestTable = ({ query, handleOpenEditForm, setGuestToEdit }: GuestTableProps) => {
   const { isLoading, error, data } = query;
 
   const columns = useMemo<AugmentedColumnDef<Guest>[]>(
@@ -42,6 +45,21 @@ export const GuestTable = ({ query }: GuestTableProps) => {
         accessorKey: "emailAddress",
         header: "Email Address",
         cell: (info) => info.getValue(),
+        meta: {
+          size: "auto",
+        },
+      },
+      {
+        id: "edit",
+        accessorKey: "id",
+        header: "Edit",
+        cell: (info) => (
+          <TableEditButton<Guest>
+            handleOpenEditForm={handleOpenEditForm}
+            setObjectToEdit={setGuestToEdit}
+            objectToEdit={info.row.original}
+          />
+        ),
         meta: {
           size: "auto",
         },

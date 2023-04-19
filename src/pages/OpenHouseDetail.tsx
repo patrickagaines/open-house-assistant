@@ -11,7 +11,7 @@ import { PageLoader } from "../components/navigation/PageLoader";
 import { GuestTable } from "../components/tables/GuestTable";
 import { useGuestsByOpenHouseId } from "../hooks/guests/useGuestsByOpenHouseId";
 import { useOpenHouseById } from "../hooks/openhouses/useOpenHouseById";
-import { OpenHouse } from "../ts/interfaces";
+import { Guest, OpenHouse } from "../ts/interfaces";
 import { formatDate } from "../utils/format-date";
 import { formatTime } from "../utils/format-time";
 
@@ -20,12 +20,14 @@ export const OpenHouseDetail = () => {
   const { isLoading, error, data: openHouse } = useOpenHouseById(Number(params.openHouseId));
   const guestQuery = useGuestsByOpenHouseId(Number(params.openHouseId));
 
-  const [guestCheckInForm, setGuestCheckInForm] = useState<"open" | "closed">("closed");
+  const [guestCheckInForm, setGuestCheckInForm] = useState<"closed" | "open">("closed");
   const [activeOpenHouse, setActiveOpenHouse] = useState<OpenHouse>();
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
   const [openHouseDeleteForm, setOpenHouseDeleteForm] = useState<"closed" | "open">("closed");
   const [openHouseToDelete, setOpenHouseToDelete] = useState<OpenHouse>();
+  const [guestEditForm, setGuestEditForm] = useState<"closed" | "open">("closed");
+  const [guestToEdit, setGuestToEdit] = useState<Guest>();
 
   const handleGuestCheckInForm = () => {
     if (guestCheckInForm === "closed") {
@@ -64,6 +66,14 @@ export const OpenHouseDetail = () => {
   const handleDeleteButton = () => {
     setOpenHouseToDelete(openHouse);
     handleOpenHouseDeleteForm();
+  };
+
+  const handleGuestEditForm = () => {
+    if (guestEditForm === "closed") {
+      setGuestEditForm("open");
+    } else {
+      setGuestEditForm("closed");
+    }
   };
 
   if (isLoading) {
@@ -114,7 +124,11 @@ export const OpenHouseDetail = () => {
           <span className="mt-6 block text-center">There was an error loading your data.</span>
         )}
       </section>
-      <GuestTable query={guestQuery} />
+      <GuestTable
+        query={guestQuery}
+        handleOpenEditForm={handleGuestEditForm}
+        setGuestToEdit={setGuestToEdit}
+      />
       {guestCheckInForm === "open" && (
         <GuestCheckInForm
           handleCloseCheckInForm={handleGuestCheckInForm}
