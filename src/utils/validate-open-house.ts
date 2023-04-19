@@ -1,19 +1,19 @@
 import { OpenHouse } from "../ts/interfaces";
 
 export const validateOpenHouse = (openHouse: OpenHouse): OpenHouse => {
-  const formattedOpenHouse: OpenHouse = openHouse;
+  const validatedOpenHouse: OpenHouse = openHouse;
 
-  if (formattedOpenHouse.startTime.length === 5) {
-    formattedOpenHouse.startTime = `${formattedOpenHouse.startTime}:00`;
+  if (validatedOpenHouse.startTime.length === 5) {
+    validatedOpenHouse.startTime = `${validatedOpenHouse.startTime}:00`;
   }
 
-  if (formattedOpenHouse.endTime.length === 5) {
-    formattedOpenHouse.endTime = `${formattedOpenHouse.endTime}:00`;
+  if (validatedOpenHouse.endTime.length === 5) {
+    validatedOpenHouse.endTime = `${validatedOpenHouse.endTime}:00`;
   }
 
-  if (formattedOpenHouse.unitNumber?.trim() === "") {
-    formattedOpenHouse.unitNumber = null;
+  if (validatedOpenHouse.unitNumber?.trim() === "") {
+    validatedOpenHouse.unitNumber = null;
   }
 
-  return formattedOpenHouse;
+  return validatedOpenHouse;
 };

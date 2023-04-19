@@ -1,5 +1,5 @@
 interface TextInputProps extends React.ComponentPropsWithoutRef<"input"> {
-  type?: "text" | "tel" | "email";
+  type?: "text" | "email";
   id: string;
   name: string;
   label: string;

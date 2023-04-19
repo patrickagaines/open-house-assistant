@@ -41,6 +41,12 @@ export interface GuestToRemove {
   openHouseId: number;
 }
 
+export interface PhoneNumber {
+  areaCode: string;
+  prefix: string;
+  lineNumber: string;
+}
+
 export interface Property {
   id?: number;
   streetAddress: string;
