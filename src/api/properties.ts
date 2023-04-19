@@ -1,5 +1,5 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
-import { Property } from "../ts/interfaces";
+import { NewProperty, Property } from "../ts/interfaces";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "properties";
@@ -30,7 +30,7 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, propertyId: numb
 };
 
 // prettier-ignore
-export const Post = async (auth: Auth0ContextInterface<User>, property: Property): Promise<Property> => {
+export const Post = async (auth: Auth0ContextInterface<User>, newProperty: NewProperty): Promise<Property> => {
   const accessToken = await auth.getAccessTokenSilently();
 
   const response = await fetch(`${baseUrl}/${endPoint}`, {
@@ -39,7 +39,7 @@ export const Post = async (auth: Auth0ContextInterface<User>, property: Property
       Authorization: `Bearer ${accessToken}`,
       "content-type": "application/json",
     },
-    body: JSON.stringify(property),
+    body: JSON.stringify(newProperty),
   }).then((res) => res.json());
 
   return response;

@@ -24,7 +24,7 @@ export interface NewOpenHouse {
 }
 
 export interface Guest {
-  id?: number;
+  id: number;
   firstName: string;
   lastName: string;
   phoneNumber: string;
@@ -52,7 +52,15 @@ export interface PhoneNumber {
 }
 
 export interface Property {
-  id?: number;
+  id: number;
+  streetAddress: string;
+  unitNumber: string | null;
+  city: string;
+  state: string;
+  zipCode: string;
+}
+
+export interface NewProperty {
   streetAddress: string;
   unitNumber: string | null;
   city: string;
