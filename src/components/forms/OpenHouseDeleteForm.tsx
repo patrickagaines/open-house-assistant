@@ -25,7 +25,7 @@ export const OpenHouseDeleteForm = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (openHouseToDelete?.id !== undefined) {
+    if (openHouseToDelete !== undefined) {
       mutation.mutate(openHouseToDelete.id);
     }
   };

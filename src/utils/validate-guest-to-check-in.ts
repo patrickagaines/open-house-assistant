@@ -7,7 +7,7 @@ export const validateGuestToCheckIn = (
 ): GuestToCheckIn => {
   const validatedGuestToCheckIn: GuestToCheckIn = guestToCheckIn;
 
-  if (activeOpenHouse !== undefined && activeOpenHouse.id !== undefined) {
+  if (activeOpenHouse !== undefined) {
     validatedGuestToCheckIn.openHouseId = activeOpenHouse.id;
     validatedGuestToCheckIn.propertyId = activeOpenHouse.propertyId;
   }
