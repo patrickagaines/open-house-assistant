@@ -1,14 +1,5 @@
-export interface OpenHouse {
+export interface OpenHouse extends NewOpenHouse {
   id: number;
-  date: string;
-  startTime: string;
-  endTime: string;
-  propertyId: number;
-  streetAddress: string;
-  unitNumber: string | null;
-  city: string;
-  state: string;
-  zipCode: string;
 }
 
 export interface NewOpenHouse {
@@ -51,13 +42,8 @@ export interface PhoneNumber {
   lineNumber: string;
 }
 
-export interface Property {
+export interface Property extends NewProperty {
   id: number;
-  streetAddress: string;
-  unitNumber: string | null;
-  city: string;
-  state: string;
-  zipCode: string;
 }
 
 export interface NewProperty {
