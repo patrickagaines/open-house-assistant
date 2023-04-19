@@ -1,5 +1,5 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
-import { OpenHouse } from "../ts/interfaces";
+import { NewOpenHouse, OpenHouse } from "../ts/interfaces";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "open-houses";
@@ -43,7 +43,7 @@ export const GetAllByProperty = async (auth: Auth0ContextInterface<User>, proper
 };
 
 // prettier-ignore
-export const Post = async (auth: Auth0ContextInterface<User>, openHouse: OpenHouse): Promise<OpenHouse> => {
+export const Post = async (auth: Auth0ContextInterface<User>, newOpenHouse: NewOpenHouse): Promise<OpenHouse> => {
   const accessToken = await auth.getAccessTokenSilently();
 
   const response = await fetch(`${baseUrl}/${endPoint}`, {
@@ -52,7 +52,7 @@ export const Post = async (auth: Auth0ContextInterface<User>, openHouse: OpenHou
       Authorization: `Bearer ${accessToken}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(openHouse),
+    body: JSON.stringify(newOpenHouse),
   }).then((res) => res.json());
 
   return response;

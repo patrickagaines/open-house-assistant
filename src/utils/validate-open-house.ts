@@ -1,7 +1,7 @@
-import { OpenHouse } from "../ts/interfaces";
+import { NewOpenHouse } from "../ts/interfaces";
 
-export const validateOpenHouse = (openHouse: OpenHouse): OpenHouse => {
-  const validatedOpenHouse: OpenHouse = openHouse;
+export const validateOpenHouse = (newOpenHouse: NewOpenHouse): NewOpenHouse => {
+  const validatedOpenHouse: NewOpenHouse = newOpenHouse;
 
   if (validatedOpenHouse.startTime.length === 5) {
     validatedOpenHouse.startTime = `${validatedOpenHouse.startTime}:00`;

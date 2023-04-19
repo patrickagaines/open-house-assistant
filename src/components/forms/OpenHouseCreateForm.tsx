@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCreateOpenHouse } from "../../hooks/openhouses/useCreateOpenHouse";
 import { useProperties } from "../../hooks/properties/useProperties";
 import { stateSelectOptions } from "../../ts/constants";
-import { OpenHouse, SelectInputOptions } from "../../ts/interfaces";
+import { NewOpenHouse, SelectInputOptions } from "../../ts/interfaces";
 import { successToast } from "../../utils/success-toast";
 import { validateOpenHouse } from "../../utils/validate-open-house";
 import { Button } from "../buttons/Button";
@@ -17,7 +17,7 @@ interface OpenHouseCreateFormProps {
 }
 
 export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFormProps) => {
-  const initialState = (): OpenHouse => ({
+  const initialState = (): NewOpenHouse => ({
     date: "",
     startTime: "",
     endTime: "",
@@ -29,7 +29,7 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
     zipCode: "",
   });
 
-  const [newOpenHouse, setNewOpenHouse] = useState<OpenHouse>(initialState());
+  const [newOpenHouse, setNewOpenHouse] = useState<NewOpenHouse>(initialState());
   const queryClient = useQueryClient();
 
   const successCallback = () => {

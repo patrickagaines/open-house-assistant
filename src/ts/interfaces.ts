@@ -1,13 +1,17 @@
-export interface BasicOpenHouse {
+export interface OpenHouse {
   id?: number;
   date: string;
   startTime: string;
   endTime: string;
   propertyId: number;
+  streetAddress: string;
+  unitNumber: string | null;
+  city: string;
+  state: string;
+  zipCode: string;
 }
 
-export interface OpenHouse {
-  id?: number;
+export interface NewOpenHouse {
   date: string;
   startTime: string;
   endTime: string;
