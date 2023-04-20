@@ -109,6 +109,25 @@ export const DetailIcon = () => {
   );
 };
 
+export const DeleteIcon = () => (
+  <svg
+    className="fill-lt-text hover:fill-dk-primary dark:fill-dk-text dark:hover:fill-lt-primary"
+    width="24"
+    height="24"
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="16" cy="16" r="16" />
+    <path
+      className="stroke-lt-surface dark:stroke-dk-surface"
+      d="M17.8333 14.1667V20.5833M14.1667 14.1667V20.5833M10.5 10.5V21.3167C10.5 22.3434 10.5 22.8565 10.6998 23.2486C10.8756 23.5936 11.1559 23.8746 11.5008 24.0504C11.8926 24.25 12.4057 24.25 13.4305 24.25H18.5695C19.5943 24.25 20.1067 24.25 20.4984 24.0504C20.8434 23.8746 21.1246 23.5936 21.3004 23.2486C21.5 22.8568 21.5 22.3443 21.5 21.3195V10.5M10.5 10.5H12.3333M10.5 10.5H8.66667M12.3333 10.5H19.6667M12.3333 10.5C12.3333 9.64577 12.3333 9.21887 12.4729 8.88196C12.659 8.43274 13.0156 8.07563 13.4648 7.88955C13.8018 7.75 14.2291 7.75 15.0833 7.75H16.9167C17.7709 7.75 18.198 7.75 18.5349 7.88955C18.9841 8.07563 19.341 8.43274 19.527 8.88196C19.6666 9.21887 19.6667 9.64578 19.6667 10.5M19.6667 10.5H21.5M21.5 10.5H23.3333"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const EditIcon = () => {
   return (
     <svg
@@ -171,6 +190,25 @@ export const GuestsIcon = () => {
     </svg>
   );
 };
+
+export const GuestRemoveIcon = () => (
+  <svg
+    className="fill-lt-text hover:fill-dk-primary dark:fill-dk-text dark:hover:fill-lt-primary"
+    width="24"
+    height="24"
+    viewBox="0 0 32 32"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="16" cy="16" r="16" />
+    <path
+      className="stroke-lt-surface dark:stroke-dk-surface"
+      d="M18.5 21.8333C18.5 19.9924 16.2614 18.5 13.5 18.5C10.7386 18.5 8.5 19.9924 8.5 21.8333M18.5 16.8333H23.5M13.5 16C11.6591 16 10.1667 14.5076 10.1667 12.6667C10.1667 10.8257 11.6591 9.33333 13.5 9.33333C15.3409 9.33333 16.8333 10.8257 16.8333 12.6667C16.8333 14.5076 15.3409 16 13.5 16Z"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 export const MoonIcon = () => {
   return (

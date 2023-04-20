@@ -29,6 +29,8 @@ export const OpenHouseDetail = () => {
   const [openHouseToDelete, setOpenHouseToDelete] = useState<OpenHouse>();
   const [guestEditForm, setGuestEditForm] = useState<"closed" | "open">("closed");
   const [guestToEdit, setGuestToEdit] = useState<Guest>();
+  const [guestRemoveForm, setGuestRemoveForm] = useState<"closed" | "open">("closed");
+  const [guestToRemove, setGuestToRemove] = useState<Guest>();
 
   const handleGuestCheckInForm = () => {
     if (guestCheckInForm === "closed") {
@@ -74,6 +76,14 @@ export const OpenHouseDetail = () => {
       setGuestEditForm("open");
     } else {
       setGuestEditForm("closed");
+    }
+  };
+
+  const handleGuestRemoveForm = () => {
+    if (guestRemoveForm === "closed") {
+      setGuestRemoveForm("open");
+    } else {
+      setGuestRemoveForm("closed");
     }
   };
 
@@ -129,6 +139,9 @@ export const OpenHouseDetail = () => {
         query={guestQuery}
         handleOpenEditForm={handleGuestEditForm}
         setGuestToEdit={setGuestToEdit}
+        handleOpenDeleteForm={handleGuestRemoveForm}
+        setGuestToDelete={setGuestToRemove}
+        deleteIcon="remove"
       />
       {guestCheckInForm === "open" && (
         <GuestCheckInForm

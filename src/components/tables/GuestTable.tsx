@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { Guest } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
 import { Button } from "../buttons/Button";
+import { TableDeleteButton } from "../buttons/TableDeleteButton";
 import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
@@ -10,9 +11,19 @@ interface GuestTableProps {
   query: UseQueryResult<Guest[], unknown>;
   handleOpenEditForm: () => void;
   setGuestToEdit: React.Dispatch<React.SetStateAction<Guest | undefined>>;
+  handleOpenDeleteForm: () => void;
+  setGuestToDelete: React.Dispatch<React.SetStateAction<Guest | undefined>>;
+  deleteIcon?: "delete" | "remove";
 }
 
-export const GuestTable = ({ query, handleOpenEditForm, setGuestToEdit }: GuestTableProps) => {
+export const GuestTable = ({
+  query,
+  handleOpenEditForm,
+  setGuestToEdit,
+  handleOpenDeleteForm,
+  setGuestToDelete,
+  deleteIcon,
+}: GuestTableProps) => {
   const { isLoading, error, data } = query;
 
   const columns = useMemo<AugmentedColumnDef<Guest>[]>(
@@ -61,7 +72,23 @@ export const GuestTable = ({ query, handleOpenEditForm, setGuestToEdit }: GuestT
           />
         ),
         meta: {
-          size: "auto",
+          size: "12%",
+        },
+      },
+      {
+        id: deleteIcon === "remove" ? "remove" : "delete",
+        accessorKey: "id",
+        header: deleteIcon === "remove" ? "Remove" : "Delete",
+        cell: (info) => (
+          <TableDeleteButton<Guest>
+            handleOpenDeleteForm={handleOpenDeleteForm}
+            setObjectToDelete={setGuestToDelete}
+            objectToDelete={info.row.original}
+            icon={deleteIcon}
+          />
+        ),
+        meta: {
+          size: "12%",
         },
       },
     ],
