@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUpdateGuest } from "../../hooks/guests/useUpdateGuest";
 import { Guest, PhoneNumber } from "../../ts/interfaces";
 import { ValidateGuest } from "../../utils/guest-validations";
@@ -35,6 +35,15 @@ export const GuestEditForm = ({
   };
 
   const mutation = useUpdateGuest({ successCallback });
+
+  useEffect(() => {
+    if (guestToEdit !== undefined) {
+      setGuestToEdit({
+        ...guestToEdit,
+        phoneNumber: `(${phoneInput.areaCode}) ${phoneInput.prefix}-${phoneInput.lineNumber}`,
+      });
+    }
+  }, [phoneInput]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (guestToEdit !== undefined) {
