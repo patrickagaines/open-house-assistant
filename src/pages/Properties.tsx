@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FormShade } from "../components/forms/FormShade";
 import { PropertyCreateForm } from "../components/forms/PropertyCreateForm";
+import { PropertyEditForm } from "../components/forms/PropertyEditForm";
 import { PropertyTable } from "../components/tables/PropertyTable";
 import { useProperties } from "../hooks/properties/useProperties";
 import { Property } from "../ts/interfaces";
@@ -42,6 +43,15 @@ export const Properties = () => {
       {propertyCreateForm === "open" && (
         <FormShade>
           <PropertyCreateForm handleCloseCreateForm={handlePropertyCreateForm} />
+        </FormShade>
+      )}
+      {propertyEditForm === "open" && (
+        <FormShade>
+          <PropertyEditForm
+            handleCloseEditForm={handlePropertyEditForm}
+            propertyToEdit={propertyToEdit}
+            setPropertyToEdit={setPropertyToEdit}
+          />
         </FormShade>
       )}
       <ToastContainer />

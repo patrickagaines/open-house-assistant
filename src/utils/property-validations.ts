@@ -1,4 +1,4 @@
-import { NewProperty } from "../ts/interfaces";
+import { NewProperty, Property } from "../ts/interfaces";
 
 export const validateNewProperty = (newProperty: NewProperty): NewProperty => {
   const validatedNewProperty = newProperty;
@@ -8,4 +8,14 @@ export const validateNewProperty = (newProperty: NewProperty): NewProperty => {
   }
 
   return validatedNewProperty;
+};
+
+export const validateProperty = (property: Property): Property => {
+  const validatedProperty = property;
+
+  if (validatedProperty.unitNumber?.trim() === "") {
+    validatedProperty.unitNumber = null;
+  }
+
+  return validatedProperty;
 };
