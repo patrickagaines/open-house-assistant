@@ -49,7 +49,7 @@ export const PropertyEditForm = ({
   return (
     <div className="sm:theme-border h-screen overflow-y-scroll bg-lt-ground p-3 dark:bg-dk-ground sm:h-auto sm:p-6">
       <form className="mt-1 sm:mt-0" onSubmit={(e) => handleSubmit(e)}>
-        <h2 className="text-center text-lg">Create Property</h2>
+        <h2 className="text-center text-lg">Edit Property</h2>
         <div className="mt-6 flex flex-col space-y-2">
           <div className="flex flex-col space-y-2 sm:grid sm:grid-cols-2 sm:space-x-2 sm:space-y-0">
             <TextInput
