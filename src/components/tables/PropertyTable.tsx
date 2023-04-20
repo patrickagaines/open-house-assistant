@@ -1,56 +1,32 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { PlusIcon } from "../../assets/icons";
-import { OpenHouse } from "../../ts/interfaces";
+import { Property } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
-import { formatDate } from "../../utils/format-date";
-import { formatTime } from "../../utils/format-time";
 import { TableActionButton } from "../buttons/TableActionButton";
 import { TableDetailButton } from "../buttons/TableDetailButton";
 import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
 
-interface OpenHouseTableProps {
-  query: UseQueryResult<OpenHouse[], unknown>;
+interface PropertyTableProps {
+  query: UseQueryResult<Property[], unknown>;
+  title: React.ReactElement;
   handleOpenCreateForm: () => void;
   handleOpenEditForm: () => void;
-  setOpenHouseToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
+  setPropertyToEdit: React.Dispatch<React.SetStateAction<Property | undefined>>;
 }
 
-export const OpenHouseTable = ({
+export const PropertyTable = ({
   query,
+  title,
   handleOpenCreateForm,
   handleOpenEditForm,
-  setOpenHouseToEdit,
-}: OpenHouseTableProps) => {
+  setPropertyToEdit,
+}: PropertyTableProps) => {
   const { isLoading, error, data } = query;
 
-  const columns = useMemo<AugmentedColumnDef<OpenHouse>[]>(
+  const columns = useMemo<AugmentedColumnDef<Property>[]>(
     () => [
-      {
-        accessorKey: "date",
-        header: "Date",
-        cell: (info) => formatDate(info.getValue<string>()),
-        meta: {
-          size: "auto",
-        },
-      },
-      {
-        accessorKey: "startTime",
-        header: "Start Time",
-        cell: (info) => formatTime(info.getValue<string>()),
-        meta: {
-          size: "auto",
-        },
-      },
-      {
-        accessorKey: "endTime",
-        header: "End Time",
-        cell: (info) => formatTime(info.getValue<string>()),
-        meta: {
-          size: "auto",
-        },
-      },
       {
         accessorKey: "streetAddress",
         header: "Street Address",
@@ -76,13 +52,29 @@ export const OpenHouseTable = ({
         },
       },
       {
+        accessorKey: "state",
+        header: "State",
+        cell: (info) => info.getValue(),
+        meta: {
+          size: "auto",
+        },
+      },
+      {
+        accessorKey: "zipCode",
+        header: "Zip Code",
+        cell: (info) => info.getValue(),
+        meta: {
+          size: "auto",
+        },
+      },
+      {
         id: "edit",
         accessorKey: "id",
         header: "Edit",
         cell: (info) => (
-          <TableEditButton<OpenHouse>
+          <TableEditButton<Property>
             handleOpenEditForm={handleOpenEditForm}
-            setObjectToEdit={setOpenHouseToEdit}
+            setObjectToEdit={setPropertyToEdit}
             objectToEdit={info.row.original}
           />
         ),
@@ -94,7 +86,7 @@ export const OpenHouseTable = ({
         id: "view",
         accessorKey: "id",
         header: "View",
-        cell: (info) => <TableDetailButton route={`/open-houses/${info.getValue()}`} />,
+        cell: (info) => <TableDetailButton route={`/properties/${info.getValue()}`} />,
         meta: {
           size: "auto",
         },
@@ -104,8 +96,8 @@ export const OpenHouseTable = ({
   );
 
   return (
-    <DataTable<OpenHouse>
-      title={<h1 className="text-center text-2xl md:text-3xl">Open Houses</h1>}
+    <DataTable
+      title={title}
       isLoading={isLoading}
       error={error}
       data={data}
