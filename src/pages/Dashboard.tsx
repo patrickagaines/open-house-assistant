@@ -9,7 +9,7 @@ import { useOpenHouses } from "../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../ts/interfaces";
 
 export const Dashboard = () => {
-  const openHousesQuery = useOpenHouses();
+  const openHouseQuery = useOpenHouses();
 
   const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
@@ -34,7 +34,7 @@ export const Dashboard = () => {
   return (
     <>
       <OpenHouseTable
-        query={openHousesQuery}
+        query={openHouseQuery}
         handleOpenCreateForm={handleOpenHouseCreateForm}
         handleOpenEditForm={handleOpenHouseEditForm}
         setOpenHouseToEdit={setOpenHouseToEdit}

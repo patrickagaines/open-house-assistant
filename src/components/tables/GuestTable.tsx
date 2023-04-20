@@ -10,6 +10,7 @@ import { DataTable } from "./DataTable";
 
 interface GuestTableProps {
   query: UseQueryResult<Guest[], unknown>;
+  title: React.ReactElement;
   handleOpenEditForm: () => void;
   setGuestToEdit: React.Dispatch<React.SetStateAction<Guest | undefined>>;
   handleOpenDeleteForm: () => void;
@@ -19,6 +20,7 @@ interface GuestTableProps {
 
 export const GuestTable = ({
   query,
+  title,
   handleOpenEditForm,
   setGuestToEdit,
   handleOpenDeleteForm,
@@ -98,7 +100,7 @@ export const GuestTable = ({
 
   return (
     <DataTable<Guest>
-      title={<h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Guests</h2>}
+      title={title}
       isLoading={isLoading}
       error={error}
       data={data}

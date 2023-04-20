@@ -38,10 +38,10 @@ export const GuestRemoveForm = ({
       <form className="mt-1 sm:mt-0" onSubmit={(e) => handleSubmit(e)}>
         <h2 className="text-center text-lg">Remove Guest</h2>
         <span className="mt-4 block">
-          Are you sure you wish to remove{" "}
+          Are you sure you wish to remove
           <span className="font-bold">
-            {guestToRemove?.firstName} {guestToRemove?.lastName}
-          </span>{" "}
+            {` ${guestToRemove?.firstName} ${guestToRemove?.lastName} `}
+          </span>
           from this open house?
         </span>
         <span className="mt-4 block italic">

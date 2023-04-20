@@ -138,6 +138,9 @@ export const OpenHouseDetail = () => {
       </section>
       <GuestTable
         query={guestQuery}
+        title={
+          <h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Open House Guests</h2>
+        }
         handleOpenEditForm={handleGuestEditForm}
         setGuestToEdit={setGuestToEdit}
         handleOpenDeleteForm={handleGuestRemoveForm}
