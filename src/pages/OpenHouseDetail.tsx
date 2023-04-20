@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
 import { GuestCheckInForm } from "../components/forms/GuestCheckInForm";
+import { GuestEditForm } from "../components/forms/GuestEditForm";
 import { OpenHouseDeleteForm } from "../components/forms/OpenHouseDeleteForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
@@ -149,6 +150,15 @@ export const OpenHouseDetail = () => {
           <OpenHouseDeleteForm
             handleCloseDeleteForm={handleOpenHouseDeleteForm}
             openHouseToDelete={openHouseToDelete}
+          />
+        </FormShade>
+      )}
+      {guestEditForm === "open" && (
+        <FormShade>
+          <GuestEditForm
+            handleCloseEditForm={handleGuestEditForm}
+            guestToEdit={guestToEdit}
+            setGuestToEdit={setGuestToEdit}
           />
         </FormShade>
       )}

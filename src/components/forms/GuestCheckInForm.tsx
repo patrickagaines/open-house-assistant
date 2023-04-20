@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useGuestCheckIn } from "../../hooks/guests/useGuestCheckIn";
 import { GuestToCheckIn, OpenHouse, PhoneNumber } from "../../ts/interfaces";
 import { successToast } from "../../utils/success-toast";
-import { validateGuestToCheckIn } from "../../utils/validate-guest-to-check-in";
+import { validateGuestToCheckIn } from "../../utils/guest-validations";
 import { Button } from "../buttons/Button";
 import { EndOpenHouseButton } from "../buttons/EndOpenHouseButton";
 import { PhoneInput } from "../inputs/PhoneInput";
@@ -104,7 +104,7 @@ export const GuestCheckInForm = ({
             required
           />
         </div>
-        <div className="mt-6 flex justify-center space-x-4">
+        <div className="mt-6 flex justify-center">
           <Button type="submit" isLoading={mutation.isLoading}>
             Check In
           </Button>

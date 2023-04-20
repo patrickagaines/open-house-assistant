@@ -28,7 +28,7 @@ export const PhoneInput = ({ phoneInput, setPhoneInput }: PhoneInputProps) => {
 
   return (
     <fieldset>
-      <legend>Phone Number</legend>
+      <legend className="text-lt-heading dark:text-dk-heading">Phone Number</legend>
       <div className="theme-border theme-surface input mt-1 flex items-center rounded-sm px-1 outline-1 focus-within:outline">
         <div>&#40;</div>
         <input
