@@ -6,6 +6,7 @@ import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
 import { GuestCheckInForm } from "../components/forms/GuestCheckInForm";
 import { GuestEditForm } from "../components/forms/GuestEditForm";
+import { GuestRemoveForm } from "../components/forms/GuestRemoveForm";
 import { OpenHouseDeleteForm } from "../components/forms/OpenHouseDeleteForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
@@ -172,6 +173,15 @@ export const OpenHouseDetail = () => {
             handleCloseEditForm={handleGuestEditForm}
             guestToEdit={guestToEdit}
             setGuestToEdit={setGuestToEdit}
+          />
+        </FormShade>
+      )}
+      {guestRemoveForm === "open" && (
+        <FormShade>
+          <GuestRemoveForm
+            handleCloseRemoveForm={handleGuestRemoveForm}
+            guestToRemove={guestToRemove}
+            activeOpenHouse={openHouse}
           />
         </FormShade>
       )}

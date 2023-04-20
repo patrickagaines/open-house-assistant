@@ -1,4 +1,4 @@
-import { Guest, GuestToCheckIn, OpenHouse, PhoneNumber } from "../ts/interfaces";
+import { Guest, GuestToCheckIn, GuestToRemove, OpenHouse, PhoneNumber } from "../ts/interfaces";
 
 export const validateGuestToCheckIn = (
   guestToCheckIn: GuestToCheckIn,
@@ -27,4 +27,13 @@ export const ValidateGuest = (guest: Guest, phoneInput: PhoneNumber): Guest => {
   validatedGuest.emailAddress = validatedGuest.emailAddress.trim().toLowerCase();
 
   return validatedGuest;
+};
+
+export const validateGuestToRemove = (guest: Guest, openHouse: OpenHouse): GuestToRemove => {
+  const guestToRemove: GuestToRemove = {
+    guestId: guest.id,
+    openHouseId: openHouse.id,
+  };
+
+  return guestToRemove;
 };
