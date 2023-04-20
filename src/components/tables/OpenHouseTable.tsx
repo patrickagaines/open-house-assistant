@@ -12,6 +12,7 @@ import { DataTable } from "./DataTable";
 
 interface OpenHouseTableProps {
   query: UseQueryResult<OpenHouse[], unknown>;
+  title: React.ReactElement;
   handleOpenCreateForm: () => void;
   handleOpenEditForm: () => void;
   setOpenHouseToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
@@ -19,6 +20,7 @@ interface OpenHouseTableProps {
 
 export const OpenHouseTable = ({
   query,
+  title,
   handleOpenCreateForm,
   handleOpenEditForm,
   setOpenHouseToEdit,
@@ -105,7 +107,7 @@ export const OpenHouseTable = ({
 
   return (
     <DataTable<OpenHouse>
-      title={<h1 className="text-center text-2xl md:text-3xl">Open Houses</h1>}
+      title={title}
       isLoading={isLoading}
       error={error}
       data={data}
