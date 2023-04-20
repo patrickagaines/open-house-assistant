@@ -45,10 +45,12 @@ export const OpenHouseCreateForm = ({ handleCloseCreateForm }: OpenHouseCreateFo
   const propertySelectOptions: SelectInputOptions[] = [{ label: "New Property", value: 0 }];
 
   if (data !== undefined) {
-    data.forEach((row) =>
+    data.forEach((property) =>
       propertySelectOptions.push({
-        label: `${row.streetAddress}${row.unitNumber ? ` Unit ${row.unitNumber}` : ``}`,
-        value: row.id!, //eslint-disable-line
+        label: `${property.streetAddress}${
+          property.unitNumber ? ` Unit ${property.unitNumber}` : ``
+        }`,
+        value: property.id,
       })
     );
   }
