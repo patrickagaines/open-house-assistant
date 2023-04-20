@@ -1,8 +1,9 @@
 import { UseQueryResult } from "@tanstack/react-query";
 import { useMemo } from "react";
+import { ExportIcon } from "../../assets/icons";
 import { Guest } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
-import { Button } from "../buttons/Button";
+import { TableActionButton } from "../buttons/TableActionButton";
 import { TableDeleteButton } from "../buttons/TableDeleteButton";
 import { TableEditButton } from "../buttons/TableEditButton";
 import { DataTable } from "./DataTable";
@@ -102,7 +103,11 @@ export const GuestTable = ({
       error={error}
       data={data}
       columns={columns}
-      actionButton={<Button type="button">Export</Button>}
+      actionButton={
+        <TableActionButton onClick={() => console.log("Exported")} icon={<ExportIcon />}>
+          Export
+        </TableActionButton>
+      }
     />
   );
 };
