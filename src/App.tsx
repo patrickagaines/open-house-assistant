@@ -9,6 +9,7 @@ import { Guests } from "./pages/Guests";
 import { Home } from "./pages/Home";
 import { OpenHouseDetail } from "./pages/OpenHouseDetail";
 import { Properties } from "./pages/Properties";
+import { PropertyDetail } from "./pages/PropertyDetail";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -27,6 +28,10 @@ export const App = () => {
           element={<AuthenticationGuard component={OpenHouseDetail} />}
         />
         <Route path="/properties" element={<AuthenticationGuard component={Properties} />} />
+        <Route
+          path="/properties/:propertyId"
+          element={<AuthenticationGuard component={PropertyDetail} />}
+        />
         <Route path="/guests" element={<AuthenticationGuard component={Guests} />} />
         <Route path="/callback" element={<Callback />} />
       </Route>
