@@ -1,4 +1,5 @@
 import { UseQueryResult } from "@tanstack/react-query";
+import { VisibilityState } from "@tanstack/react-table";
 import { useMemo } from "react";
 import { PlusIcon } from "../../assets/icons";
 import { OpenHouse } from "../../ts/interfaces";
@@ -13,6 +14,7 @@ import { DataTable } from "./DataTable";
 interface OpenHouseTableProps {
   query: UseQueryResult<OpenHouse[], unknown>;
   title: React.ReactElement;
+  showPropertyColumns?: boolean;
   handleOpenCreateForm: () => void;
   handleOpenEditForm: () => void;
   setOpenHouseToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
@@ -21,6 +23,7 @@ interface OpenHouseTableProps {
 export const OpenHouseTable = ({
   query,
   title,
+  showPropertyColumns = true,
   handleOpenCreateForm,
   handleOpenEditForm,
   setOpenHouseToEdit,
@@ -57,6 +60,7 @@ export const OpenHouseTable = ({
         accessorKey: "streetAddress",
         header: "Street Address",
         cell: (info) => info.getValue(),
+
         meta: {
           size: "auto",
         },
@@ -89,7 +93,7 @@ export const OpenHouseTable = ({
           />
         ),
         meta: {
-          size: "auto",
+          size: showPropertyColumns ? "auto" : "12%",
         },
       },
       {
@@ -98,12 +102,18 @@ export const OpenHouseTable = ({
         header: "View",
         cell: (info) => <TableDetailButton route={`/open-houses/${info.getValue()}`} />,
         meta: {
-          size: "auto",
+          size: showPropertyColumns ? "auto" : "12%",
         },
       },
     ],
     []
   );
+
+  const columnVisibilityState: VisibilityState = {
+    streetAddress: showPropertyColumns,
+    unitNumber: showPropertyColumns,
+    city: showPropertyColumns,
+  };
 
   return (
     <DataTable<OpenHouse>
@@ -112,6 +122,7 @@ export const OpenHouseTable = ({
       error={error}
       data={data}
       columns={columns}
+      columnVisibilityState={columnVisibilityState}
       actionButton={
         <TableActionButton onClick={handleOpenCreateForm} icon={<PlusIcon />}>
           Create

@@ -14,12 +14,14 @@ interface OpenHouseEditFormProps {
   handleCloseEditForm: () => void;
   openHouseToEdit: OpenHouse | undefined;
   setOpenHouseToEdit: React.Dispatch<React.SetStateAction<OpenHouse | undefined>>;
+  disablePropertyFields?: boolean;
 }
 
 export const OpenHouseEditForm = ({
   handleCloseEditForm,
   openHouseToEdit,
   setOpenHouseToEdit,
+  disablePropertyFields = false,
 }: OpenHouseEditFormProps) => {
   const queryClient = useQueryClient();
 
@@ -88,6 +90,7 @@ export const OpenHouseEditForm = ({
               onChange={handleChange}
               required
               maxLength={50}
+              disabled={disablePropertyFields}
             />
             <TextInput
               id="unitNumber"
@@ -96,6 +99,7 @@ export const OpenHouseEditForm = ({
               value={openHouseToEdit?.unitNumber ?? "_"}
               onChange={handleChange}
               maxLength={10}
+              disabled={disablePropertyFields}
             />
           </div>
           <div className="grid grid-cols-3 space-x-2">
@@ -107,6 +111,7 @@ export const OpenHouseEditForm = ({
               onChange={handleChange}
               required
               maxLength={25}
+              disabled={disablePropertyFields}
             />
             <SelectInput
               id="state"
@@ -116,6 +121,7 @@ export const OpenHouseEditForm = ({
               value={openHouseToEdit?.state}
               onChange={handleChange}
               required
+              disabled={disablePropertyFields}
             />
             <TextInput
               id="zipCode"
@@ -125,6 +131,7 @@ export const OpenHouseEditForm = ({
               onChange={handleChange}
               required
               maxLength={10}
+              disabled={disablePropertyFields}
             />
           </div>
         </div>

@@ -1,4 +1,5 @@
 import {
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -17,6 +18,7 @@ interface DataTableProps<T> {
   error: unknown;
   data: T[] | undefined;
   columns: AugmentedColumnDef<T>[];
+  columnVisibilityState: VisibilityState;
   actionButton: React.ReactElement;
 }
 
@@ -26,6 +28,7 @@ export const DataTable = <T,>({
   error,
   data,
   columns,
+  columnVisibilityState,
   actionButton,
 }: DataTableProps<T>) => {
   const [globalFilter, setGlobalFilter] = useState<string>("");
@@ -39,6 +42,9 @@ export const DataTable = <T,>({
     columns,
     state: {
       globalFilter,
+    },
+    initialState: {
+      columnVisibility: columnVisibilityState,
     },
     onGlobalFilterChange: setGlobalFilter,
     getCoreRowModel: getCoreRowModel(),

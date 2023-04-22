@@ -4,12 +4,41 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
+import { OpenHouseCreateForm } from "../components/forms/OpenHouseCreateForm";
+import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
+import { GuestTable } from "../components/tables/GuestTable";
+import { OpenHouseTable } from "../components/tables/OpenHouseTable";
+import { useGuestsByPropertyId } from "../hooks/guests/useGuestsByPropertyId";
+import { useOpenHousesByPropertyId } from "../hooks/openhouses/useOpenHousesByPropertyId";
 import { usePropertyById } from "../hooks/properties/usePropertyById";
+import { OpenHouse } from "../ts/interfaces";
 
 export const PropertyDetail = () => {
   const params = useParams();
   const { isLoading, error, data: property } = usePropertyById(Number(params.propertyId));
+  const openHouseQuery = useOpenHousesByPropertyId(Number(params.propertyId));
+  const guestQuery = useGuestsByPropertyId(Number(params.propertyId));
+
+  const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
+  const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
+  const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
+
+  const handleOpenHouseCreateForm = () => {
+    if (openHouseCreateForm === "closed") {
+      setOpenHouseCreateForm("open");
+    } else {
+      setOpenHouseCreateForm("closed");
+    }
+  };
+
+  const handleOpenHouseEditForm = () => {
+    if (openHouseEditForm === "closed") {
+      setOpenHouseEditForm("open");
+    } else {
+      setOpenHouseEditForm("closed");
+    }
+  };
 
   if (isLoading) {
     return <PageLoader />;
@@ -40,6 +69,36 @@ export const PropertyDetail = () => {
           <span className="mt-6 block text-center">There was an error loading your data.</span>
         )}
       </section>
+      <OpenHouseTable
+        query={openHouseQuery}
+        title={
+          <h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Property Open Houses</h2>
+        }
+        showPropertyColumns={false}
+        handleOpenCreateForm={handleOpenHouseCreateForm}
+        handleOpenEditForm={handleOpenHouseEditForm}
+        setOpenHouseToEdit={setOpenHouseToEdit}
+      />
+      <GuestTable
+        query={guestQuery}
+        title={<h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Property Guests</h2>}
+      />
+      {openHouseCreateForm === "open" && (
+        <FormShade>
+          <OpenHouseCreateForm handleCloseCreateForm={handleOpenHouseCreateForm} />
+        </FormShade>
+      )}
+      {openHouseEditForm === "open" && (
+        <FormShade>
+          <OpenHouseEditForm
+            handleCloseEditForm={handleOpenHouseEditForm}
+            openHouseToEdit={openHouseToEdit}
+            setOpenHouseToEdit={setOpenHouseToEdit}
+            disablePropertyFields={true}
+          />
+        </FormShade>
+      )}
+      <ToastContainer />
     </>
   );
 };
