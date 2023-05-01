@@ -11,9 +11,13 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<OpenHou
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 //prettier-ignore
@@ -24,9 +28,13 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, openHouseId: num
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 //prettier-ignore
@@ -37,9 +45,13 @@ export const GetAllByProperty = async (auth: Auth0ContextInterface<User>, proper
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -53,9 +65,13 @@ export const Post = async (auth: Auth0ContextInterface<User>, newOpenHouse: NewO
       "Content-Type": "application/json",
     },
     body: JSON.stringify(newOpenHouse),
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -69,9 +85,13 @@ export const Put = async (auth: Auth0ContextInterface<User>, openHouse: OpenHous
       "Content-Type": "application/json",
     },
     body: JSON.stringify(openHouse),
-  }).then((res) => res.status);
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -83,7 +103,11 @@ export const Delete = async (auth: Auth0ContextInterface<User>, openHouseId: num
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.status);
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };

@@ -11,9 +11,13 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<Guest[]
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -24,9 +28,13 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, guestId: number)
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -37,9 +45,13 @@ export const GetAllByProperty = async (auth: Auth0ContextInterface, propertyId: 
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -50,9 +62,13 @@ export const GetAllByOpenHouse = async (auth: Auth0ContextInterface, openHouseId
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -66,9 +82,13 @@ export const CheckIn = async (auth: Auth0ContextInterface<User>, guestToCheckIn:
       "content-type": "application/json",
     },
     body: JSON.stringify(guestToCheckIn),
-  }).then((res) => res.json());
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 export const Put = async (auth: Auth0ContextInterface<User>, guest: Guest): Promise<number> => {
@@ -81,9 +101,13 @@ export const Put = async (auth: Auth0ContextInterface<User>, guest: Guest): Prom
       "content-type": "application/json",
     },
     body: JSON.stringify(guest),
-  }).then((res) => res.status);
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -95,9 +119,13 @@ export const Delete = async (auth: Auth0ContextInterface<User>, guestId: number)
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.status);
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
 
 // prettier-ignore
@@ -109,7 +137,11 @@ export const RemoveFromOpenHouse = async (auth: Auth0ContextInterface<User>, gue
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  }).then((res) => res.status);
+  });
 
-  return response;
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+
+  return response.json();
 };
