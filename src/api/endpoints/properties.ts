@@ -1,6 +1,6 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
 import { NewProperty, Property } from "../../ts/interfaces";
-import { handleErrors, handleNetworkError } from "../services";
+import { handleErrors } from "../services";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "properties";
@@ -14,8 +14,7 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<Propert
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -30,8 +29,7 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, propertyId: numb
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -49,8 +47,7 @@ export const Post = async (auth: Auth0ContextInterface<User>, newProperty: NewPr
     body: JSON.stringify(newProperty),
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 }
@@ -68,8 +65,7 @@ export const Put = async (auth: Auth0ContextInterface<User>, property: Property)
     body: JSON.stringify(property),
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 };
@@ -85,8 +81,7 @@ export const Delete = async (auth: Auth0ContextInterface<User>, propertyId: numb
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 }

@@ -1,6 +1,6 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
 import { Guest, GuestToCheckIn, GuestToRemove } from "../../ts/interfaces";
-import { handleErrors, handleNetworkError } from "../services";
+import { handleErrors } from "../services";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "guests";
@@ -14,8 +14,7 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<Guest[]
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -30,8 +29,7 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, guestId: number)
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -46,8 +44,7 @@ export const GetAllByProperty = async (auth: Auth0ContextInterface, propertyId: 
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -62,8 +59,7 @@ export const GetAllByOpenHouse = async (auth: Auth0ContextInterface, openHouseId
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -81,8 +77,7 @@ export const CheckIn = async (auth: Auth0ContextInterface<User>, guestToCheckIn:
     body: JSON.stringify(guestToCheckIn),
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -99,8 +94,7 @@ export const Put = async (auth: Auth0ContextInterface<User>, guest: Guest): Prom
     body: JSON.stringify(guest),
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 };
@@ -116,8 +110,7 @@ export const Delete = async (auth: Auth0ContextInterface<User>, guestId: number)
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 };
@@ -133,8 +126,7 @@ export const RemoveFromOpenHouse = async (auth: Auth0ContextInterface<User>, gue
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 };

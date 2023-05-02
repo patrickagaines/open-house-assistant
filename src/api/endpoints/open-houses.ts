@@ -1,6 +1,6 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
 import { NewOpenHouse, OpenHouse } from "../../ts/interfaces";
-import { handleErrors, handleNetworkError } from "../services";
+import { handleErrors } from "../services";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "open-houses";
@@ -14,8 +14,7 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<OpenHou
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -30,8 +29,7 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, openHouseId: num
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -46,8 +44,7 @@ export const GetAllByProperty = async (auth: Auth0ContextInterface<User>, proper
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -65,8 +62,7 @@ export const Post = async (auth: Auth0ContextInterface<User>, newOpenHouse: NewO
     body: JSON.stringify(newOpenHouse),
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.json());
 
   return response;
 };
@@ -84,8 +80,7 @@ export const Put = async (auth: Auth0ContextInterface<User>, openHouse: OpenHous
     body: JSON.stringify(openHouse),
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 };
@@ -101,8 +96,7 @@ export const Delete = async (auth: Auth0ContextInterface<User>, openHouseId: num
     },
   })
     .then(handleErrors)
-    .then((response) => response.json())
-    .catch(handleNetworkError);
+    .then((response) => response.status);
 
   return response;
 };
