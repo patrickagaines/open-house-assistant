@@ -6,6 +6,7 @@ import { GuestDeleteForm } from "../components/forms/GuestDeleteForm";
 import { GuestEditForm } from "../components/forms/GuestEditForm";
 import { OpenHouseCreateForm } from "../components/forms/OpenHouseCreateForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
+import { PropertyDeleteForm } from "../components/forms/PropertyDeleteForm";
 import { PropertyEditForm } from "../components/forms/PropertyEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
 import { GuestTable } from "../components/tables/GuestTable";
@@ -22,12 +23,14 @@ export const PropertyDetail = () => {
   const openHouseQuery = useOpenHousesByPropertyId(Number(params.propertyId));
   const guestQuery = useGuestsByPropertyId(Number(params.propertyId));
 
+  const [propertyDeleteForm, setPropertyDeleteForm] = useState<"closed" | "open">("closed");
   const [propertyEditForm, setPropertyEditForm] = useState<"closed" | "open">("closed");
   const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
   const [guestEditForm, setGuestEditForm] = useState<"closed" | "open">("closed");
   const [guestDeleteForm, setGuestDeleteForm] = useState<"closed" | "open">("closed");
 
+  const [propertyToDelete, setPropertyToDelete] = useState<Property>();
   const [propertyToEdit, setPropertyToEdit] = useState<Property>();
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
   const [guestToEdit, setGuestToEdit] = useState<Guest>();
@@ -36,6 +39,11 @@ export const PropertyDetail = () => {
   const handleEditButton = () => {
     setPropertyToEdit(property);
     handleOpenForm(setPropertyEditForm);
+  };
+
+  const handleDeleteButton = () => {
+    setPropertyToDelete(property);
+    handleOpenForm(setPropertyDeleteForm);
   };
 
   if (isLoading) {
@@ -60,7 +68,9 @@ export const PropertyDetail = () => {
                 <Button type="button" onClick={handleEditButton}>
                   Edit
                 </Button>
-                <Button type="button">Delete</Button>
+                <Button type="button" onClick={handleDeleteButton}>
+                  Delete
+                </Button>
               </div>
             </div>
           </div>
@@ -93,6 +103,14 @@ export const PropertyDetail = () => {
             handleCloseEditForm={() => handleCloseForm(setPropertyEditForm)}
             propertyToEdit={propertyToEdit}
             setPropertyToEdit={setPropertyToEdit}
+          />
+        </FormShade>
+      )}
+      {propertyDeleteForm === "open" && (
+        <FormShade>
+          <PropertyDeleteForm
+            handleCloseDeleteForm={() => handleCloseForm(setPropertyDeleteForm)}
+            propertyToDelete={propertyToDelete}
           />
         </FormShade>
       )}
