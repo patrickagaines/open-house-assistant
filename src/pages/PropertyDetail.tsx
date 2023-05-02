@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
+import { GuestDeleteForm } from "../components/forms/GuestDeleteForm";
+import { GuestEditForm } from "../components/forms/GuestEditForm";
 import { OpenHouseCreateForm } from "../components/forms/OpenHouseCreateForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { PageLoader } from "../components/navigation/PageLoader";
@@ -10,7 +12,7 @@ import { OpenHouseTable } from "../components/tables/OpenHouseTable";
 import { useGuestsByPropertyId } from "../hooks/guests/useGuestsByPropertyId";
 import { useOpenHousesByPropertyId } from "../hooks/openhouses/useOpenHousesByPropertyId";
 import { usePropertyById } from "../hooks/properties/usePropertyById";
-import { OpenHouse } from "../ts/interfaces";
+import { Guest, OpenHouse } from "../ts/interfaces";
 import { handleCloseForm, handleOpenForm } from "../utils/form-visibility-handlers";
 
 export const PropertyDetail = () => {
@@ -21,8 +23,12 @@ export const PropertyDetail = () => {
 
   const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
+  const [guestEditForm, setGuestEditForm] = useState<"closed" | "open">("closed");
+  const [guestDeleteForm, setGuestDeleteForm] = useState<"closed" | "open">("closed");
 
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
+  const [guestToEdit, setGuestToEdit] = useState<Guest>();
+  const [guestToDelete, setGuestToDelete] = useState<Guest>();
 
   if (isLoading) {
     return <PageLoader />;
@@ -66,6 +72,10 @@ export const PropertyDetail = () => {
       <GuestTable
         query={guestQuery}
         title={<h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Property Guests</h2>}
+        handleOpenEditForm={() => handleOpenForm(setGuestEditForm)}
+        setGuestToEdit={setGuestToEdit}
+        handleOpenDeleteForm={() => handleOpenForm(setGuestDeleteForm)}
+        setGuestToDelete={setGuestToDelete}
       />
       {openHouseCreateForm === "open" && (
         <FormShade>
@@ -81,6 +91,23 @@ export const PropertyDetail = () => {
             openHouseToEdit={openHouseToEdit}
             setOpenHouseToEdit={setOpenHouseToEdit}
             disablePropertyFields={true}
+          />
+        </FormShade>
+      )}
+      {guestEditForm === "open" && (
+        <FormShade>
+          <GuestEditForm
+            handleCloseEditForm={() => handleCloseForm(setGuestEditForm)}
+            guestToEdit={guestToEdit}
+            setGuestToEdit={setGuestToEdit}
+          />
+        </FormShade>
+      )}
+      {guestDeleteForm === "open" && (
+        <FormShade>
+          <GuestDeleteForm
+            handleCloseDeleteForm={() => handleCloseForm(setGuestDeleteForm)}
+            guestToDelete={guestToDelete}
           />
         </FormShade>
       )}
