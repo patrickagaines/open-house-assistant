@@ -18,7 +18,7 @@ interface DataTableProps<T> {
   error: unknown;
   data: T[] | undefined;
   columns: AugmentedColumnDef<T>[];
-  columnVisibilityState: VisibilityState;
+  columnVisibilityState?: VisibilityState;
   actionButton: React.ReactElement;
 }
 
