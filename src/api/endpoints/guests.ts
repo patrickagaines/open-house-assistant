@@ -1,5 +1,6 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
-import { Guest, GuestToCheckIn, GuestToRemove } from "../ts/interfaces";
+import { Guest, GuestToCheckIn, GuestToRemove } from "../../ts/interfaces";
+import { handleErrors, handleNetworkError } from "../services";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "guests";
@@ -11,13 +12,12 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<Guest[]
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -28,13 +28,12 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, guestId: number)
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -45,13 +44,12 @@ export const GetAllByProperty = async (auth: Auth0ContextInterface, propertyId: 
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -62,13 +60,12 @@ export const GetAllByOpenHouse = async (auth: Auth0ContextInterface, openHouseId
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -82,13 +79,12 @@ export const CheckIn = async (auth: Auth0ContextInterface<User>, guestToCheckIn:
       "content-type": "application/json",
     },
     body: JSON.stringify(guestToCheckIn),
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 export const Put = async (auth: Auth0ContextInterface<User>, guest: Guest): Promise<number> => {
@@ -101,13 +97,12 @@ export const Put = async (auth: Auth0ContextInterface<User>, guest: Guest): Prom
       "content-type": "application/json",
     },
     body: JSON.stringify(guest),
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -119,13 +114,12 @@ export const Delete = async (auth: Auth0ContextInterface<User>, guestId: number)
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -137,11 +131,10 @@ export const RemoveFromOpenHouse = async (auth: Auth0ContextInterface<User>, gue
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };

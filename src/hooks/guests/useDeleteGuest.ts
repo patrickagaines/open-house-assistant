@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
-import { Delete } from "../../api/guests";
+import { Delete } from "../../api/endpoints/guests";
 import { MutationHookProps } from "../../ts/interfaces";
 
 export const useDeleteGuest = ({ successCallback }: MutationHookProps) => {

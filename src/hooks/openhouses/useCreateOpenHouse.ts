@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
-import { Post } from "../../api/open-houses";
+import { Post } from "../../api/endpoints/open-houses";
 import { MutationHookProps, NewOpenHouse } from "../../ts/interfaces";
 
 export const useCreateOpenHouse = ({ successCallback }: MutationHookProps) => {

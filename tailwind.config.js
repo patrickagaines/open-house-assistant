@@ -28,6 +28,7 @@ export default {
         "dk-focus": "#FFE284",
         "dk-input-disabled": "#141c27",
         "primary-color-text": "#212529",
+        error: "#ef4444",
       },
       width: {
         400: "400px",

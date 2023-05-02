@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
-import { RemoveFromOpenHouse } from "../../api/guests";
+import { RemoveFromOpenHouse } from "../../api/endpoints/guests";
 import { GuestToRemove, MutationHookProps } from "../../ts/interfaces";
 
 export const useRemoveGuestFromOpenHouse = ({ successCallback }: MutationHookProps) => {

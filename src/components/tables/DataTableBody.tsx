@@ -26,8 +26,8 @@ export const DataTableBody = <T,>({ isLoading, error, table, columns }: DataTabl
     return (
       <tbody>
         <tr>
-          <td colSpan={columns.length} className="table-cell">
-            {`Failed to fetch data. Error: ${error.message}`}
+          <td colSpan={columns.length} className="table-cell pt-6 text-center text-error">
+            {error.message}
           </td>
         </tr>
       </tbody>

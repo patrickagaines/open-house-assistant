@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
-import { Post } from "../../api/properties";
+import { Post } from "../../api/endpoints/properties";
 import { MutationHookProps, NewProperty } from "../../ts/interfaces";
 
 export const useCreateProperty = ({ successCallback }: MutationHookProps) => {

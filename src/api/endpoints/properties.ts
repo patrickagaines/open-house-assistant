@@ -1,5 +1,6 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
-import { NewProperty, Property } from "../ts/interfaces";
+import { NewProperty, Property } from "../../ts/interfaces";
+import { handleErrors, handleNetworkError } from "../services";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
 const endPoint = "properties";
@@ -11,13 +12,12 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<Propert
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -28,13 +28,12 @@ export const GetOne = async (auth: Auth0ContextInterface<User>, propertyId: numb
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -48,13 +47,12 @@ export const Post = async (auth: Auth0ContextInterface<User>, newProperty: NewPr
       "content-type": "application/json",
     },
     body: JSON.stringify(newProperty),
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 }
 
 // prettier-ignore
@@ -68,13 +66,12 @@ export const Put = async (auth: Auth0ContextInterface<User>, property: Property)
       "content-type": "application/json",
     },
     body: JSON.stringify(property),
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 };
 
 // prettier-ignore
@@ -86,11 +83,10 @@ export const Delete = async (auth: Auth0ContextInterface<User>, propertyId: numb
     headers: {
       Authorization: `Bearer ${acessToken}`,
     },
-  });
+  })
+    .then(handleErrors)
+    .then((response) => response.json())
+    .catch(handleNetworkError);
 
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-
-  return response.json();
+  return response;
 }

@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useQuery } from "@tanstack/react-query";
-import { GetAll } from "../../api/properties";
+import { GetAll } from "../../api/endpoints/properties";
 
 export const useProperties = () => {
   const auth = useAuth0();
