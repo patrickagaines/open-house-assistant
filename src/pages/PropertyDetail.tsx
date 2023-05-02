@@ -13,6 +13,7 @@ import { useGuestsByPropertyId } from "../hooks/guests/useGuestsByPropertyId";
 import { useOpenHousesByPropertyId } from "../hooks/openhouses/useOpenHousesByPropertyId";
 import { usePropertyById } from "../hooks/properties/usePropertyById";
 import { OpenHouse } from "../ts/interfaces";
+import { handleCloseForm, handleOpenForm } from "../utils/form-visibility-handlers";
 
 export const PropertyDetail = () => {
   const params = useParams();
@@ -22,23 +23,8 @@ export const PropertyDetail = () => {
 
   const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
+
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
-
-  const handleOpenHouseCreateForm = () => {
-    if (openHouseCreateForm === "closed") {
-      setOpenHouseCreateForm("open");
-    } else {
-      setOpenHouseCreateForm("closed");
-    }
-  };
-
-  const handleOpenHouseEditForm = () => {
-    if (openHouseEditForm === "closed") {
-      setOpenHouseEditForm("open");
-    } else {
-      setOpenHouseEditForm("closed");
-    }
-  };
 
   if (isLoading) {
     return <PageLoader />;
@@ -75,8 +61,8 @@ export const PropertyDetail = () => {
           <h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Property Open Houses</h2>
         }
         showPropertyColumns={false}
-        handleOpenCreateForm={handleOpenHouseCreateForm}
-        handleOpenEditForm={handleOpenHouseEditForm}
+        handleOpenCreateForm={() => handleOpenForm(setOpenHouseCreateForm)}
+        handleOpenEditForm={() => handleOpenForm(setOpenHouseEditForm)}
         setOpenHouseToEdit={setOpenHouseToEdit}
       />
       <GuestTable
@@ -85,13 +71,15 @@ export const PropertyDetail = () => {
       />
       {openHouseCreateForm === "open" && (
         <FormShade>
-          <OpenHouseCreateForm handleCloseCreateForm={handleOpenHouseCreateForm} />
+          <OpenHouseCreateForm
+            handleCloseCreateForm={() => handleCloseForm(setOpenHouseCreateForm)}
+          />
         </FormShade>
       )}
       {openHouseEditForm === "open" && (
         <FormShade>
           <OpenHouseEditForm
-            handleCloseEditForm={handleOpenHouseEditForm}
+            handleCloseEditForm={() => handleCloseForm(setOpenHouseEditForm)}
             openHouseToEdit={openHouseToEdit}
             setOpenHouseToEdit={setOpenHouseToEdit}
             disablePropertyFields={true}

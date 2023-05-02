@@ -14,6 +14,7 @@ import { GuestTable } from "../components/tables/GuestTable";
 import { useGuestsByOpenHouseId } from "../hooks/guests/useGuestsByOpenHouseId";
 import { useOpenHouseById } from "../hooks/openhouses/useOpenHouseById";
 import { Guest, OpenHouse } from "../ts/interfaces";
+import { handleCloseForm, handleOpenForm } from "../utils/form-visibility-handlers";
 import { formatDate } from "../utils/format-date";
 import { formatTime } from "../utils/format-time";
 
@@ -23,69 +24,30 @@ export const OpenHouseDetail = () => {
   const guestQuery = useGuestsByOpenHouseId(Number(params.openHouseId));
 
   const [guestCheckInForm, setGuestCheckInForm] = useState<"closed" | "open">("closed");
-  const [activeOpenHouse, setActiveOpenHouse] = useState<OpenHouse>();
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
-  const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
   const [openHouseDeleteForm, setOpenHouseDeleteForm] = useState<"closed" | "open">("closed");
-  const [openHouseToDelete, setOpenHouseToDelete] = useState<OpenHouse>();
   const [guestEditForm, setGuestEditForm] = useState<"closed" | "open">("closed");
-  const [guestToEdit, setGuestToEdit] = useState<Guest>();
   const [guestRemoveForm, setGuestRemoveForm] = useState<"closed" | "open">("closed");
-  const [guestToRemove, setGuestToRemove] = useState<Guest>();
 
-  const handleGuestCheckInForm = () => {
-    if (guestCheckInForm === "closed") {
-      setGuestCheckInForm("open");
-    } else {
-      setGuestCheckInForm("closed");
-    }
-  };
+  const [activeOpenHouse, setActiveOpenHouse] = useState<OpenHouse>();
+  const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
+  const [openHouseToDelete, setOpenHouseToDelete] = useState<OpenHouse>();
+  const [guestToEdit, setGuestToEdit] = useState<Guest>();
+  const [guestToRemove, setGuestToRemove] = useState<Guest>();
 
   const handleLaunchButton = () => {
     setActiveOpenHouse(openHouse);
-    handleGuestCheckInForm();
-  };
-
-  const handleOpenHouseEditForm = () => {
-    if (openHouseEditForm === "closed") {
-      setOpenHouseEditForm("open");
-    } else {
-      setOpenHouseEditForm("closed");
-    }
+    handleOpenForm(setGuestCheckInForm);
   };
 
   const handleEditButton = () => {
     setOpenHouseToEdit(openHouse);
-    handleOpenHouseEditForm();
-  };
-
-  const handleOpenHouseDeleteForm = () => {
-    if (openHouseDeleteForm === "closed") {
-      setOpenHouseDeleteForm("open");
-    } else {
-      setOpenHouseDeleteForm("closed");
-    }
+    handleOpenForm(setOpenHouseEditForm);
   };
 
   const handleDeleteButton = () => {
     setOpenHouseToDelete(openHouse);
-    handleOpenHouseDeleteForm();
-  };
-
-  const handleGuestEditForm = () => {
-    if (guestEditForm === "closed") {
-      setGuestEditForm("open");
-    } else {
-      setGuestEditForm("closed");
-    }
-  };
-
-  const handleGuestRemoveForm = () => {
-    if (guestRemoveForm === "closed") {
-      setGuestRemoveForm("open");
-    } else {
-      setGuestRemoveForm("closed");
-    }
+    handleOpenForm(setOpenHouseDeleteForm);
   };
 
   if (isLoading) {
@@ -141,22 +103,22 @@ export const OpenHouseDetail = () => {
         title={
           <h2 className="mt-10 text-center text-2xl md:text-3xl lg:mt-12">Open House Guests</h2>
         }
-        handleOpenEditForm={handleGuestEditForm}
+        handleOpenEditForm={() => handleOpenForm(setGuestEditForm)}
         setGuestToEdit={setGuestToEdit}
-        handleOpenDeleteForm={handleGuestRemoveForm}
+        handleOpenDeleteForm={() => handleOpenForm(setGuestRemoveForm)}
         setGuestToDelete={setGuestToRemove}
         deleteIcon="remove"
       />
       {guestCheckInForm === "open" && (
         <GuestCheckInForm
-          handleCloseCheckInForm={handleGuestCheckInForm}
+          handleCloseCheckInForm={() => handleCloseForm(setGuestCheckInForm)}
           activeOpenHouse={activeOpenHouse}
         />
       )}
       {openHouseEditForm === "open" && (
         <FormShade>
           <OpenHouseEditForm
-            handleCloseEditForm={handleOpenHouseEditForm}
+            handleCloseEditForm={() => handleCloseForm(setOpenHouseEditForm)}
             openHouseToEdit={openHouseToEdit}
             setOpenHouseToEdit={setOpenHouseToEdit}
           />
@@ -165,7 +127,7 @@ export const OpenHouseDetail = () => {
       {openHouseDeleteForm === "open" && (
         <FormShade>
           <OpenHouseDeleteForm
-            handleCloseDeleteForm={handleOpenHouseDeleteForm}
+            handleCloseDeleteForm={() => handleCloseForm(setOpenHouseDeleteForm)}
             openHouseToDelete={openHouseToDelete}
           />
         </FormShade>
@@ -173,7 +135,7 @@ export const OpenHouseDetail = () => {
       {guestEditForm === "open" && (
         <FormShade>
           <GuestEditForm
-            handleCloseEditForm={handleGuestEditForm}
+            handleCloseEditForm={() => handleCloseForm(setGuestEditForm)}
             guestToEdit={guestToEdit}
             setGuestToEdit={setGuestToEdit}
           />
@@ -182,7 +144,7 @@ export const OpenHouseDetail = () => {
       {guestRemoveForm === "open" && (
         <FormShade>
           <GuestRemoveForm
-            handleCloseRemoveForm={handleGuestRemoveForm}
+            handleCloseRemoveForm={() => handleCloseForm(setGuestRemoveForm)}
             guestToRemove={guestToRemove}
             activeOpenHouse={openHouse}
           />

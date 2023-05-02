@@ -7,48 +7,36 @@ import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
 import { OpenHouseTable } from "../components/tables/OpenHouseTable";
 import { useOpenHouses } from "../hooks/openhouses/useOpenHouses";
 import { OpenHouse } from "../ts/interfaces";
+import { handleCloseForm, handleOpenForm } from "../utils/form-visibility-handlers";
 
 export const Dashboard = () => {
   const openHouseQuery = useOpenHouses();
 
   const [openHouseCreateForm, setOpenHouseCreateForm] = useState<"closed" | "open">("closed");
   const [openHouseEditForm, setOpenHouseEditForm] = useState<"closed" | "open">("closed");
+
   const [openHouseToEdit, setOpenHouseToEdit] = useState<OpenHouse>();
-
-  const handleOpenHouseCreateForm = () => {
-    if (openHouseCreateForm === "closed") {
-      setOpenHouseCreateForm("open");
-    } else {
-      setOpenHouseCreateForm("closed");
-    }
-  };
-
-  const handleOpenHouseEditForm = () => {
-    if (openHouseEditForm === "closed") {
-      setOpenHouseEditForm("open");
-    } else {
-      setOpenHouseEditForm("closed");
-    }
-  };
 
   return (
     <>
       <OpenHouseTable
         query={openHouseQuery}
         title={<h1 className="text-center text-2xl md:text-3xl">Open Houses</h1>}
-        handleOpenCreateForm={handleOpenHouseCreateForm}
-        handleOpenEditForm={handleOpenHouseEditForm}
+        handleOpenCreateForm={() => handleOpenForm(setOpenHouseCreateForm)}
+        handleOpenEditForm={() => handleOpenForm(setOpenHouseEditForm)}
         setOpenHouseToEdit={setOpenHouseToEdit}
       />
       {openHouseCreateForm === "open" && (
         <FormShade>
-          <OpenHouseCreateForm handleCloseCreateForm={handleOpenHouseCreateForm} />
+          <OpenHouseCreateForm
+            handleCloseCreateForm={() => handleCloseForm(setOpenHouseCreateForm)}
+          />
         </FormShade>
       )}
       {openHouseEditForm === "open" && (
         <FormShade>
           <OpenHouseEditForm
-            handleCloseEditForm={handleOpenHouseEditForm}
+            handleCloseEditForm={() => handleCloseForm(setOpenHouseEditForm)}
             openHouseToEdit={openHouseToEdit}
             setOpenHouseToEdit={setOpenHouseToEdit}
           />
