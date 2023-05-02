@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
 import { FormShade } from "../components/forms/FormShade";
 import { GuestDeleteForm } from "../components/forms/GuestDeleteForm";
 import { GuestEditForm } from "../components/forms/GuestEditForm";
@@ -44,7 +43,6 @@ export const Guests = () => {
           />
         </FormShade>
       )}
-      <ToastContainer />
     </>
   );
 };

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { MobileNavBar } from "../navigation/MobileNavBar";
 import { NavBar } from "../navigation/NavBar";
 import { NavMenu } from "../navigation/NavMenu";
@@ -29,6 +31,7 @@ export const Layout = () => {
       <main className="mx-auto mt-16 max-w-screen-xl p-4 lg:mt-20">
         <Outlet />
       </main>
+      <ToastContainer />
     </>
   );
 };

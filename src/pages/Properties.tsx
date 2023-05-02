@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { FormShade } from "../components/forms/FormShade";
 import { PropertyCreateForm } from "../components/forms/PropertyCreateForm";
 import { PropertyEditForm } from "../components/forms/PropertyEditForm";
@@ -42,7 +40,6 @@ export const Properties = () => {
           />
         </FormShade>
       )}
-      <ToastContainer />
     </>
   );
 };

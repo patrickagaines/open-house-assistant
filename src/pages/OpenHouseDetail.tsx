@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
 import { GuestCheckInForm } from "../components/forms/GuestCheckInForm";
@@ -150,7 +148,6 @@ export const OpenHouseDetail = () => {
           />
         </FormShade>
       )}
-      <ToastContainer />
     </>
   );
 };

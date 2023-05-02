@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { FormShade } from "../components/forms/FormShade";
 import { OpenHouseCreateForm } from "../components/forms/OpenHouseCreateForm";
 import { OpenHouseEditForm } from "../components/forms/OpenHouseEditForm";
@@ -42,7 +40,6 @@ export const Dashboard = () => {
           />
         </FormShade>
       )}
-      <ToastContainer />
     </>
   );
 };
