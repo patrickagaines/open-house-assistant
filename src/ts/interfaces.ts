@@ -61,4 +61,5 @@ export interface SelectInputOptions {
 
 export interface MutationHookProps {
   successCallback: () => void;
+  errorCallback: (error: Error) => void;
 }

@@ -152,7 +152,7 @@ export const EditIcon = () => {
 export const ErrorIcon = () => {
   return (
     <svg
-      className="fill-lt-text dark:fill-dk-text"
+      className="fill-error"
       width="20"
       height="20"
       viewBox="0 0 20 20"
