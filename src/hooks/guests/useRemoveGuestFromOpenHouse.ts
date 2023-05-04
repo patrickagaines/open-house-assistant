@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
 import { RemoveFromOpenHouse } from "../../api/endpoints/guests";
+import { errorCallback } from "../../api/services";
 import { GuestToRemove, MutationHookProps } from "../../ts/interfaces";
 
 export const useRemoveGuestFromOpenHouse = ({ successCallback }: MutationHookProps) => {
@@ -9,6 +10,7 @@ export const useRemoveGuestFromOpenHouse = ({ successCallback }: MutationHookPro
     (guestToRemove: GuestToRemove) => RemoveFromOpenHouse(auth, guestToRemove),
     {
       onSuccess: successCallback,
+      onError: errorCallback,
     }
   );
   return mutation;

@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useCreateProperty } from "../../hooks/properties/useCreateProperty";
 import { stateSelectOptions } from "../../ts/constants";
 import { NewProperty } from "../../ts/interfaces";
-import { errorToast } from "../../utils/error-toast";
 import { validateNewProperty } from "../../utils/property-validations";
 import { successToast } from "../../utils/success-toast";
 import { Button } from "../buttons/Button";
@@ -33,11 +32,7 @@ export const PropertyCreateForm = ({ handleCloseCreateForm }: PropertyCreateForm
     handleCloseCreateForm();
   };
 
-  const errorCallback = (error: Error) => {
-    errorToast(error.message);
-  };
-
-  const mutation = useCreateProperty({ successCallback, errorCallback });
+  const mutation = useCreateProperty({ successCallback });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setNewProperty({
