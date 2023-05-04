@@ -35,20 +35,28 @@ export const DataTableBody = <T,>({ isLoading, error, table, columns }: DataTabl
   }
 
   return (
-    <tbody className="theme-surface">
-      {table.getRowModel().rows.map((row) => (
-        <tr key={row.id}>
-          {row.getVisibleCells().map((cell) => (
-            <td
-              key={cell.id}
-              width={(cell.column.columnDef as AugmentedColumnDef<T>).meta.size}
-              className="theme-border p-2"
-            >
-              {flexRender(cell.column.columnDef.cell, cell.getContext())}
-            </td>
-          ))}
+    <tbody className={table.getRowModel().rows.length !== 0 ? "theme-surface" : ""}>
+      {table.getRowModel().rows.length === 0 ? (
+        <tr>
+          <td colSpan={columns.length} className="table-cell pt-6 text-center italic">
+            No results to show.
+          </td>
         </tr>
-      ))}
+      ) : (
+        table.getRowModel().rows.map((row) => (
+          <tr key={row.id}>
+            {row.getVisibleCells().map((cell) => (
+              <td
+                key={cell.id}
+                width={(cell.column.columnDef as AugmentedColumnDef<T>).meta.size}
+                className="theme-border p-2"
+              >
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </td>
+            ))}
+          </tr>
+        ))
+      )}
     </tbody>
   );
 };
