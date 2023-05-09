@@ -45,9 +45,9 @@ export const CheckInQr = ({ openHouseId, propertyId }: CheckInQrProps) => {
   };
 
   return (
-    <div className="items-center text-center lg:flex lg:space-x-6">
+    <div className="mt-10 items-center text-center lg:mt-6 lg:flex lg:space-x-6">
       <img
-        className="theme-border mx-auto mb-4 mt-10 lg:mt-6"
+        className="theme-border mx-auto mb-4 lg:mb-0"
         width={219}
         src={qr}
         alt="Check-in qr code."
