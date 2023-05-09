@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { CheckInQr } from "../components/CheckInQr";
 import { Button } from "../components/buttons/Button";
 import { FormShade } from "../components/forms/FormShade";
 import { GuestCheckInForm } from "../components/forms/GuestCheckInForm";
@@ -54,47 +55,54 @@ export const OpenHouseDetail = () => {
 
   return (
     <>
-      <section>
-        <h1 className="text-center text-2xl md:text-3xl">Manage Open House</h1>
-        {openHouse !== undefined && (
-          <div className="mt-6 sm:flex sm:justify-center sm:space-x-6 lg:justify-start">
-            <div className="theme-surface theme-border p-4 sm:w-400">
-              <span className="block text-center font-bold">
-                {openHouse.streetAddress}
-                {openHouse.unitNumber ? ` Unit ${openHouse.unitNumber}, ` : ` `}
-                <br />
-                {openHouse.city}, {openHouse.state} {openHouse.zipCode}
-              </span>
-              <hr className="mt-4 border-lt-border dark:border-dk-border" />
-              <div className="mt-4">
-                <span className="font-bold">Date: </span>
-                <span>{formatDate(openHouse.date)}</span>
+      <h1 className="text-center text-2xl md:text-3xl">Manage Open House</h1>
+      <section className="justify-between lg:flex">
+        <div>
+          {openHouse !== undefined && (
+            <div className="mt-6 sm:flex sm:justify-center sm:space-x-6 lg:justify-start">
+              <div className="theme-surface theme-border p-4 sm:w-400">
+                <span className="block text-center font-bold">
+                  {openHouse.streetAddress}
+                  {openHouse.unitNumber ? ` Unit ${openHouse.unitNumber}, ` : ` `}
+                  <br />
+                  {openHouse.city}, {openHouse.state} {openHouse.zipCode}
+                </span>
+                <hr className="mt-4 border-lt-border dark:border-dk-border" />
+                <div className="mt-4">
+                  <span className="font-bold">Date: </span>
+                  <span>{formatDate(openHouse.date)}</span>
+                </div>
+                <div className="mt-4">
+                  <span className="font-bold">Start Time: </span>
+                  <span>{formatTime(openHouse.startTime)}</span>
+                </div>
+                <div className="mt-4">
+                  <span className="font-bold">End Time: </span>
+                  <span>{formatTime(openHouse.endTime)}</span>
+                </div>
               </div>
-              <div className="mt-4">
-                <span className="font-bold">Start Time: </span>
-                <span>{formatTime(openHouse.startTime)}</span>
-              </div>
-              <div className="mt-4">
-                <span className="font-bold">End Time: </span>
-                <span>{formatTime(openHouse.endTime)}</span>
+              <div className="mt-6 flex justify-center space-x-2 sm:flex-col sm:space-x-0 sm:space-y-2">
+                <Button type="button" onClick={handleLaunchButton}>
+                  Launch
+                </Button>
+                <Button type="button" onClick={handleEditButton}>
+                  Edit
+                </Button>
+                <Button type="button" onClick={handleDeleteButton}>
+                  Delete
+                </Button>
               </div>
             </div>
-            <div className="mt-6 flex justify-center space-x-2 sm:flex-col sm:space-x-0 sm:space-y-2">
-              <Button type="button" onClick={handleLaunchButton}>
-                Launch
-              </Button>
-              <Button type="button" onClick={handleEditButton}>
-                Edit
-              </Button>
-              <Button type="button" onClick={handleDeleteButton}>
-                Delete
-              </Button>
-            </div>
-          </div>
-        )}
-        {error instanceof Error && (
-          <span className="mt-6 block text-center">There was an error loading your data.</span>
-        )}
+          )}
+          {error instanceof Error && (
+            <span className="mt-6 block text-center">There was an error loading your data.</span>
+          )}
+        </div>
+        <div>
+          {openHouse !== undefined && (
+            <CheckInQr openHouseId={openHouse.id} propertyId={openHouse.propertyId} />
+          )}
+        </div>
       </section>
       <GuestTable
         query={guestQuery}
