@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { ExportIcon } from "../../assets/icons";
 import { Guest } from "../../ts/interfaces";
 import { AugmentedColumnDef } from "../../ts/types";
+import { exportGuestsToCSV } from "../../utils/export-guests-to-csv";
 import { TableActionButton } from "../buttons/TableActionButton";
 import { TableDeleteButton } from "../buttons/TableDeleteButton";
 import { TableEditButton } from "../buttons/TableEditButton";
@@ -98,6 +99,12 @@ export const GuestTable = ({
     []
   );
 
+  const handleExportButton = () => {
+    if (data !== undefined) {
+      exportGuestsToCSV(data);
+    }
+  };
+
   return (
     <DataTable<Guest>
       title={title}
@@ -106,7 +113,7 @@ export const GuestTable = ({
       data={data}
       columns={columns}
       actionButton={
-        <TableActionButton onClick={() => console.log("Exported")} icon={<ExportIcon />}>
+        <TableActionButton onClick={handleExportButton} icon={<ExportIcon />}>
           Export
         </TableActionButton>
       }

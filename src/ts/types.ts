@@ -7,3 +7,10 @@ type ColumnMeta = {
 };
 
 export type AugmentedColumnDef<T> = ColumnDef<T> & ColumnMeta;
+
+export type GuestToExport = {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  emailAddress: string;
+}
