@@ -1,5 +1,5 @@
 import { Auth0ContextInterface, User } from "@auth0/auth0-react";
-import { NewProperty, Property } from "../../ts/interfaces";
+import { NewProperty, Property, PropertyWithUrl } from "../../ts/interfaces";
 import { handleErrors } from "../services";
 
 const baseUrl = import.meta.env.VITE_API_SERVER_URL;
@@ -20,7 +20,7 @@ export const GetAll = async (auth: Auth0ContextInterface<User>): Promise<Propert
 };
 
 // prettier-ignore
-export const GetOne = async (auth: Auth0ContextInterface<User>, propertyId: number): Promise<Property> => {
+export const GetOne = async (auth: Auth0ContextInterface<User>, propertyId: number): Promise<PropertyWithUrl> => {
   const accessToken = await auth.getAccessTokenSilently();
 
   const response = await fetch(`${baseUrl}/${endPoint}/${propertyId}`, {

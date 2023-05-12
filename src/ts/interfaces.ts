@@ -42,6 +42,10 @@ export interface PhoneNumber {
   lineNumber: string;
 }
 
+export interface PropertyWithUrl extends Property {
+  propertyUrl: string | null;
+}
+
 export interface Property extends NewProperty {
   id: number;
 }
