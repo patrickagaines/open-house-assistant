@@ -95,7 +95,9 @@ export const OpenHouseDetail = () => {
             </div>
           )}
           {error instanceof Error && (
-            <span className="mt-6 block text-center">There was an error loading your data.</span>
+            <span className="mt-6 block text-center text-error">
+              There was an error loading your data.
+            </span>
           )}
         </div>
         <div>

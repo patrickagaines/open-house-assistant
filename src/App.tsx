@@ -10,6 +10,7 @@ import { Home } from "./pages/Home";
 import { OpenHouseDetail } from "./pages/OpenHouseDetail";
 import { Properties } from "./pages/Properties";
 import { PropertyDetail } from "./pages/PropertyDetail";
+import { RemoteCheckIns } from "./pages/RemoteCheckIns";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -35,6 +36,7 @@ export const App = () => {
         <Route path="/guests" element={<AuthenticationGuard component={Guests} />} />
         <Route path="/callback" element={<Callback />} />
       </Route>
+      <Route path="/remote-check-ins/:openHouseId/:propertyId" element={<RemoteCheckIns />} />
     </Routes>
   );
 };
