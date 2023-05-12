@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import { RemoteCheckInForm } from "../components/forms/RemoteCheckInForm";
+import { useRemoteCheckInInfo } from "../hooks/remotecheckins/useRemoteCheckInInfo";
 
 // import { PageLoader } from "../components/navigation/PageLoader";
 
 export const RemoteCheckIns = () => {
   const { openHouseId, propertyId } = useParams();
+  const { isLoading, error, data: remoteCheckInInfo } = useRemoteCheckInInfo(Number(propertyId));
 
   // if (isLoading) {
   //   return <PageLoader />;

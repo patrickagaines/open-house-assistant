@@ -54,6 +54,12 @@ export interface NewProperty {
   zipCode: string;
 }
 
+export interface RemoteCheckInInfo {
+  streetAddress: string;
+  unitNumber: string | null;
+  propertyUrl: string | null;
+}
+
 export interface SelectInputOptions {
   label: string;
   value: string | number;
