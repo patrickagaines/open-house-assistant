@@ -1,6 +1,6 @@
 import { Guest, GuestToCheckIn, GuestToRemove, OpenHouse, PhoneNumber } from "../ts/interfaces";
 
-export const validateGuestToCheckIn = (
+export const validateGuestCheckIn = (
   guestToCheckIn: GuestToCheckIn,
   activeOpenHouse: OpenHouse | undefined,
   phoneInput: PhoneNumber
@@ -11,6 +11,19 @@ export const validateGuestToCheckIn = (
     validatedGuestToCheckIn.openHouseId = activeOpenHouse.id;
     validatedGuestToCheckIn.propertyId = activeOpenHouse.propertyId;
   }
+
+  validatedGuestToCheckIn.phoneNumber = `(${phoneInput.areaCode}) ${phoneInput.prefix}-${phoneInput.lineNumber}`;
+
+  validatedGuestToCheckIn.emailAddress = validatedGuestToCheckIn.emailAddress.trim().toLowerCase();
+
+  return validatedGuestToCheckIn;
+};
+
+export const validateRemoteGuestCheckIn = (
+  guestToCheckIn: GuestToCheckIn,
+  phoneInput: PhoneNumber
+): GuestToCheckIn => {
+  const validatedGuestToCheckIn: GuestToCheckIn = guestToCheckIn;
 
   validatedGuestToCheckIn.phoneNumber = `(${phoneInput.areaCode}) ${phoneInput.prefix}-${phoneInput.lineNumber}`;
 

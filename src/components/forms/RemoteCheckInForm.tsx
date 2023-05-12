@@ -1,16 +1,26 @@
 import { useState } from "react";
-import { GuestToCheckIn, PhoneNumber } from "../../ts/interfaces";
+import { useRemoteGuestCheckIn } from "../../hooks/remotecheckins/useRemoteGuestCheckIn";
+import { GuestToCheckIn, PhoneNumber, RemoteCheckInInfo } from "../../ts/interfaces";
+import { validateRemoteGuestCheckIn } from "../../utils/guest-validations";
+import { successToast } from "../../utils/success-toast";
 import { Button } from "../buttons/Button";
 import { PhoneInput } from "../inputs/PhoneInput";
 import { TextInput } from "../inputs/TextInput";
 
 interface RemoteCheckInFormProps {
+  error: unknown;
   openHouseId: number;
   propertyId: number;
+  remoteCheckInInfo: RemoteCheckInInfo | undefined;
 }
 
-export const RemoteCheckInForm = ({ openHouseId, propertyId }: RemoteCheckInFormProps) => {
-  const [guestToCheckIn, setGuestToCheckIn] = useState<GuestToCheckIn>({
+export const RemoteCheckInForm = ({
+  error,
+  openHouseId,
+  propertyId,
+  remoteCheckInInfo,
+}: RemoteCheckInFormProps) => {
+  const initialGuestState = (): GuestToCheckIn => ({
     openHouseId: openHouseId,
     propertyId: propertyId,
     firstName: "",
@@ -19,11 +29,27 @@ export const RemoteCheckInForm = ({ openHouseId, propertyId }: RemoteCheckInForm
     emailAddress: "",
   });
 
-  const [phoneInput, setPhoneInput] = useState<PhoneNumber>({
+  const initialPhoneInputState = (): PhoneNumber => ({
     areaCode: "",
     prefix: "",
     lineNumber: "",
   });
+
+  const [guestToCheckIn, setGuestToCheckIn] = useState<GuestToCheckIn>(initialGuestState());
+  const [phoneInput, setPhoneInput] = useState<PhoneNumber>(initialPhoneInputState());
+  const redirectUrl = remoteCheckInInfo?.propertyUrl;
+
+  const successCallback = () => {
+    if (redirectUrl !== null && redirectUrl !== undefined && Boolean(new URL(redirectUrl))) {
+      window.location.replace(redirectUrl);
+    } else {
+      setGuestToCheckIn(initialGuestState());
+      setPhoneInput(initialPhoneInputState());
+      successToast("Enjoy your tour!");
+    }
+  };
+
+  const mutation = useRemoteGuestCheckIn({ successCallback });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGuestToCheckIn({
@@ -34,7 +60,7 @@ export const RemoteCheckInForm = ({ openHouseId, propertyId }: RemoteCheckInForm
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(guestToCheckIn);
+    mutation.mutate(validateRemoteGuestCheckIn(guestToCheckIn, phoneInput));
   };
 
   return (
@@ -42,6 +68,23 @@ export const RemoteCheckInForm = ({ openHouseId, propertyId }: RemoteCheckInForm
       className="mx-auto mt-3 max-w-md p-3 sm:mt-12 sm:w-100 md:mt-20"
       onSubmit={(e) => handleSubmit(e)}
     >
+      {remoteCheckInInfo !== undefined && (
+        <div className="text-center">
+          <span>Welcome to</span>
+          <h1 className="text-center text-lg sm:text-2xl">
+            {remoteCheckInInfo.streetAddress}
+            {remoteCheckInInfo.unitNumber && ` Unit ${remoteCheckInInfo.unitNumber}`}
+          </h1>
+        </div>
+      )}
+      {error instanceof Error && (
+        <div className="text-center">
+          <span className="text-error">
+            Oops! There was a problem
+            <br /> loading this open house.
+          </span>
+        </div>
+      )}
       <div className="mt-4 flex flex-col space-y-2 sm:mt-6">
         <TextInput
           id="firstName"
@@ -74,7 +117,9 @@ export const RemoteCheckInForm = ({ openHouseId, propertyId }: RemoteCheckInForm
         />
       </div>
       <div className="mt-6 flex justify-center">
-        <Button type="submit">Check In</Button>
+        <Button type="submit" isLoading={mutation.isLoading}>
+          Check In
+        </Button>
       </div>
     </form>
   );

@@ -1,26 +1,26 @@
 import { useParams } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { RemoteCheckInForm } from "../components/forms/RemoteCheckInForm";
+import { PageLoader } from "../components/navigation/PageLoader";
 import { useRemoteCheckInInfo } from "../hooks/remotecheckins/useRemoteCheckInInfo";
-
-// import { PageLoader } from "../components/navigation/PageLoader";
 
 export const RemoteCheckIns = () => {
   const { openHouseId, propertyId } = useParams();
   const { isLoading, error, data: remoteCheckInInfo } = useRemoteCheckInInfo(Number(propertyId));
 
-  // if (isLoading) {
-  //   return <PageLoader />;
-  // }
-
-  // if (error instanceof Error) {
-  //   return <p className="mt-6 text-center text-error">Could not load check-in info.</p>;
-  // }
+  if (isLoading) {
+    return <PageLoader />;
+  }
 
   return (
     <>
-      {openHouseId !== undefined && (
-        <RemoteCheckInForm openHouseId={Number(openHouseId)} propertyId={Number(propertyId)} />
-      )}
+      <RemoteCheckInForm
+        error={error}
+        openHouseId={Number(openHouseId)}
+        propertyId={Number(propertyId)}
+        remoteCheckInInfo={remoteCheckInInfo}
+      />
+      <ToastContainer />
     </>
   );
 };

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useGuestCheckIn } from "../../hooks/guests/useGuestCheckIn";
 import { GuestToCheckIn, OpenHouse, PhoneNumber } from "../../ts/interfaces";
 import { successToast } from "../../utils/success-toast";
-import { validateGuestToCheckIn } from "../../utils/guest-validations";
+import { validateGuestCheckIn } from "../../utils/guest-validations";
 import { Button } from "../buttons/Button";
 import { EndOpenHouseButton } from "../buttons/EndOpenHouseButton";
 import { PhoneInput } from "../inputs/PhoneInput";
@@ -55,7 +55,7 @@ export const GuestCheckInForm = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    mutation.mutate(validateGuestToCheckIn(guestToCheckIn, activeOpenHouse, phoneInput));
+    mutation.mutate(validateGuestCheckIn(guestToCheckIn, activeOpenHouse, phoneInput));
   };
 
   return (

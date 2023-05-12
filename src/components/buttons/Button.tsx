@@ -1,6 +1,6 @@
 import { ButtonLoaderIcon } from "../../assets/icons";
 
-interface ButtonProps {
+interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   type: "button" | "submit" | "reset";
   children: React.ReactNode;
   isLoading?: boolean;
